@@ -1,3 +1,4 @@
+7/15 Monday
 hey guys this is a text file
 today i want to tell you how to use this poor computer
 first we need to create a startup to open the belly on the bottom of this laptop
@@ -8,6 +9,10 @@ finally the pieces will get back together
 and then a white light will shine through the screen
 so every time we start up a computer
 we need to wear special glasses in order not to get blind
+
+
+
+7/16 Tuseday
 the eye glasses are made from sand
 which is produced through three steps
 baking, melting, and reshaping
@@ -44,3 +49,19 @@ i also turn for help to the website, it told me how to use the random library, w
 why operation start can't be deleted?
 gambling is risky, this form had better disappear on earth 
 what web program do you want to establish?/
+i finally done today's work what do you think
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
