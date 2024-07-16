@@ -12,3 +12,11 @@ full=f'{f}{' '}{l}'
 print(full)
 
 print('nearl\tthe\n\tradiant\tknight')
+
+aska='democracy            '
+aska=aska.rstrip()
+print(aska,aska)
+
+sad='iiiiiiiiiiiii want to eat an ice cream.'
+sad=sad.removeprefix('i')
+print (sad)
