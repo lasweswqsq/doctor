@@ -14,7 +14,7 @@ baking, melting, and reshaping
 and then the glass will reserruct in huge wild fires
 found that list[-1] was accesible
 There are many errors around the corner
-we need to lift our shoes, be silent and untouchable and tighten our nerves
+we need to lift our shoes, be silent and untouchable and tight our nerves
 how to comment on whole paragrphs, I am very curious about it
 I've done the list already, so we should move to the next place with a sieady pace
 green means disgusting errors and mysterious mistakes
@@ -44,8 +44,3 @@ i also turn for help to the website, it told me how to use the random library, w
 why operation start can't be deleted?
 gambling is risky, this form had better disappear on earth 
 what web program do you want to establish?/
-i finally done today's work what do you think
-
-
-
-
