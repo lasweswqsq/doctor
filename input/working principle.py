@@ -38,7 +38,7 @@ while(t<=2020):
         if (t%q==0):
             cnt+=1
         else:
-            cnt+=0
+            continue
     if (cnt==0):
         print(t,'is a prime number')
     else:
