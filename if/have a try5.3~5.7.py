@@ -1,5 +1,5 @@
 import random
-
+import time
 
 op=random.randint(12,14)
 if(op==13):
@@ -21,6 +21,7 @@ target=random.randint(2,3345)
 
 gamber=0
 cnt=0
+#timer=time
 while(gamber != 1): 
     target=random.randint(2,3345)
     if target in ff:
