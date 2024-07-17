@@ -9,6 +9,7 @@ finally the pieces will get back together
 and then a white light will shine through the screen
 so every time we start up a computer
 we need to wear special glasses in order not to get blind
+dinner was mactaculous
 
 
 
@@ -50,6 +51,7 @@ why operation start can't be deleted?
 gambling is risky, this form had better disappear on earth 
 what web program do you want to establish? https:/
 i finally done today's work what do you think
+the dinner was really delicious, especially yhe abalone , fried little yellow fish and roasted mutton with red wine and black pepper sauce
 
 
 
@@ -62,7 +64,18 @@ the chairman of the association party is going to talk with me
 should i feel honored ,afraid and trembling
 i am a little confused
 but intelligent people once said 'when there is a will, there is a way', mabey i don't need to be like this
-
+yhe dictionary can do such nesting, which really surprises me a lot
+i have overreached? are you kidding me
+at today's afternoon, after i've slept a noon sleep , i had a wechat call with the ZiJing Party vice chairman, we had a thorogh discussion about how to improve the food in the canteen
+i thought of many ways, but they are mostly rejected subject to this or that reason
+we only reached an agreement on spot checking whether they are using Prefabricated dishes, if they do do the vice chairman will go and argue with them, a saint once said 'Seeing is believing, but hearing is not.'
+he also said that we don't need to investigate on employees because the canteen manager knows all about the employees' appetite after one or two months
+but one thing l really learnt today was every thing is made up of multiple aspects.
+every time we made a significant decision, these can't be neglected
+i then told this thing to my father, my father thought mabey releasing some satisfaction surveys is appropriate, because it could lay some pressure on the canteen
+mabey i'm a bit irritable, next time i will think more
+my father sang highly of me while telling me the staff on the spot may meet with me sonner or later
+unveil the darkness is my duty
 
 
 
