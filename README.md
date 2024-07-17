@@ -48,10 +48,20 @@ deep dark fatansy is coming
 i also turn for help to the website, it told me how to use the random library, which makes my knowledge skyrocket, i also want to introduce some of themc
 why operation start can't be deleted?
 gambling is risky, this form had better disappear on earth 
-what web program do you want to establish?/
+what web program do you want to establish? https:/
 i finally done today's work what do you think
 
 
+
+7/17 Wednesday
+i foung that the canteen here was really nasty
+so i decided to change this situation
+and leave some proposals
+my dad told me that the title was too attacking that l changed it into a more tenderer one
+the chairman of the association party is going to talk with me
+should i feel honored ,afraid and trembling
+i am a little confused
+but intelligent people once said 'when there is a will, there is a way', mabey i don't need to be like this
 
 
 
