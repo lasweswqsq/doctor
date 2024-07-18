@@ -1,3 +1,4 @@
+import pprint
 import random
 t = ('yellow','green','red')
 p=(12,18,24,36,48,96)
