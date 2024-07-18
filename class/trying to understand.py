@@ -1,14 +1,23 @@
 class po:
-    def __init__ (x,y,z):
-        x.pr=y
-        x.cmd=z
-    def f1(x):
-        x.pr += 'whioehfowifh'
-        print(x.pr)
-    def f2(x):
-        x.cmd=`int(x.cmd)
-        print(x.cmd+114514)
+    def __init__ (self,y,z):
+        self.pr=y
+        self.cmd=z
+        self.para=0
+    def f1(self):
+        self.pr += 'whioehfowifh'
+        print(self.pr)
+    def f2(self):
+        self.cmd=int(self.cmd)
+        print(self.cmd+114514,self.para)
+        
 
+mabey=po('83274782346','0')
+#mabey.para=38289742378
+po.f2(mabey)
+#that is allright
+
+
+'''
 mabey=po('83274782346','0')
 fire=po('extinguisher',37826478745)
 print(mabey.pr,mabey.cmd)
@@ -18,3 +27,9 @@ po.f2(mabey)
 
 po.f1(fire)
 po.f2(fire)
+'''
+
+
+
+
+
