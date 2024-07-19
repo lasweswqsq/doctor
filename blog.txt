@@ -115,6 +115,8 @@ then i was sent back home
 7/19 Friday
 at this morning, i inquired some questions about 'class'  to Qiu, he answered them patiently, like i do not really understand the advantage of this code and so on
 warm tips: i really like the red tea that my father made
+the adjustment of files can only be put into use afier being closed and saved
+and if there are outcomes in the works, it will be printed by importing, because import means running the whole repository
 
 
 
