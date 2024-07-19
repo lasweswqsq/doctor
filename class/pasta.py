@@ -17,11 +17,12 @@ class user: #capitalize the first letter
         else:
             print('little ant look what you have done')
 
-
+'''
 s=user(250,27)
 user.sqrt(s)
 user.average(s)
 user.variance(s)
+'''
 
 class upper(user):
     def __init__(self, y, z):
@@ -48,11 +49,12 @@ class upper(user):
             else:
                 print(self.y,'is a composite number, it has',cnt+2,'prime factors.')
         
-
+'''
 p=upper(2,2132)
 #upper.nmb(p)
 upper.average(s)
 #s could be inherited
+'''
 
 class beta(upper):
     def __init__(self, y, z):
@@ -69,30 +71,15 @@ class beta(upper):
     def upgrade(self):
         if self.y!=65:
             self.y=65
-        print(s)
+        print(6)
 
 
 
 
+'''
 s=beta(232,204)
 beta.compare(s)
 beta.show(s)
 beta.upgrade(s)
 beta.compare(s)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+'''
