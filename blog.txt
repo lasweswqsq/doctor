@@ -131,7 +131,13 @@ vegetables are Garlic Sprout Shredded Meat and tomato with eggs
 today's lunch is just so so
 i am going to step into the next stage of coding, which means combining coding with realistic tools
 in my perspective, this encourages me to look straight up and speed forward
-
+i asked my teacher about how to adjust the grants for users, which is a necessary skill for an administrator
+the swimming races had already ended, and China has won a lot of medals
+we are all excited and happy to see this glorious event
+hope China will build sportsmanship and put all strengths on propagating all people sports in the mainland
+i do not know what to do, so i will continue to build a spacecraft vresus aliens game, according to the latter of the programming book
+first, i should install pygame as a setter
+we use clock to solve the problem of inconsisitence frame rate and set that number at a line of sixty
 
 
 
