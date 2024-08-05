@@ -1,5 +1,5 @@
 from pathlib import Path
-path=Path('documents and abnormals/666.txt')
+path=Path('666.txt')
 
 contents=path.read_text()
 
