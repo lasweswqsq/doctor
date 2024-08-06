@@ -11,9 +11,17 @@ import pandas as pd
 
 # 执行 SQL 查询语句，并将结果转化为 Pandas dataframe 对象
 df = pd.read_sql("select COUNT(*) from book;", con=engine)
-#dc=pd.read_sql("select time from book where author='2'")
-
-print(df)
+dc=pd.read_sql("select time from book where author='2'", con=engine)
+#dp=pd.read_sql("INSERT INTO book(title,author,time,create_time,creator) values('123124','234yt2gs87dgh3si','1994-12-22 10:31:48','1994-12-22 10:31:48','nscjoxe8g09psk');", con=engine)
+print(df,'\n',dc)
 
 # 关闭数据库连接
 engine.dispose()
+
+
+
+
+
+
+
+

@@ -152,7 +152,7 @@ like battleplan once said 'like a phoneix/revive from the ashes' i hope i can do
 8/6 Tuseday
 today i am moving forward
 i would like to combine database with python today, which will let the primarily unrelated two grow connections with each other
-
+learn two new libraries, which benefits me a lot 
 
 
 
