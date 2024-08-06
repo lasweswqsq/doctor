@@ -153,7 +153,14 @@ like battleplan once said 'like a phoneix/revive from the ashes' i hope i can do
 today i am moving forward
 i would like to combine database with python today, which will let the primarily unrelated two grow connections with each other
 learn two new libraries, which benefits me a lot 
-
+i found an article about some replacements of english words, which fuels my composition with sparkling idioms
+i see what is a fastapi.
+fastapi is a internet framework, contrast to the real application framework on mobile phones and computers
+it guides the websites, as a loyal servant, to operate at a specific mode and arrange schedules one after another
+fastapi has many advantages, including perfect function, quick coding, rare bugs, direct screen, easy using experience, short coding requirements, strong and interactive  over other rivals
+i have screenshoted a photo and moved it to the suitcase 'doctor/internet'
+i and my teacher work together to dash through many difficulties, it was such a different expreience like we are just warriors being stuck in a trap and we tried every means to pull ourselves out and gain freedom again
+and it struck me that if i want to use a server, i must first feed some related data into it so it could run soomthly
 
 
 
