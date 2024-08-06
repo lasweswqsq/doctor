@@ -121,6 +121,8 @@ it's two thirty in the afternoon, and here is going to hold a Zijin Intelligence
 i saw there are a lot of colorful balloons floating in the air, coco colas being placed on tables, everyone has a smile on his face, the atmosphere was full of happiness and joy, so let's  wait and show our expectation to this great event.
 a woman said that all the staffs should stand in a row before three in order to accept the inspection of their leader, the hstess said that standing chaotically is just ok
 
+
+
 8/5 Monday
 Finally, i got back from Tibet, which is such an exciting trip
 i will continue to learn Python 
@@ -138,12 +140,18 @@ hope China will build sportsmanship and put all strengths on propagating all peo
 i do not know what to do, so i will continue to build a spacecraft vresus aliens game, according to the latter of the programming book
 first, i should install pygame as a setter
 we use clock to solve the problem of inconsisitence frame rate and set that number at a line of sixty
+my passion just rushed to me, but when i realized that even if i write the same as what was writen in this book, the program can't just work a bit, which made me feel very confused and puzzled
+is the guidiance on  the book wrong? or am i wrong?
+i just want to depict various shapes on my computer's screen
+anyway, this is not something strongly required and i can not do it is the sky that curses me
+a low birth, an inferior kindergarten, a bilingual primary school, a well-known middle school, a painstaking high school and , through the college entrance examination, i was finally committed by shanghai science and technology college
+like battleplan once said 'like a phoneix/revive from the ashes' i hope i can do that one day
 
 
 
-
-
-
+8/6 Tuseday
+today i am moving forward
+i would like to combine database with python today, which will let the primarily unrelated two grow connections with each other
 
 
 
