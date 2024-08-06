@@ -19,11 +19,12 @@ print(conn)
 cursor = conn.cursor()
 # 执行 SQL 查询语句
 cursor.execute("SELECT * FROM book WHERE author = '12wehd723b'")
-cursor.execute("SELECT * FROM book WHERE author = '2'")
+#cursor.execute("SELECT * FROM book WHERE author = '2'")
 #execute 会产生覆盖效果，不会报错
 # 获取查询结果
 result = cursor.fetchall()
 
+#this is useful
 pp.pprint(result)
 
 import pandas as pd
@@ -31,6 +32,8 @@ import pandas as pd
 df = pd.DataFrame(result, columns=[i[0] for i in cursor.description])
 
 print(df)
+#this is useless
+pp.pprint(df)
 
 # 关闭游标和数据库连接
 cursor.close()
