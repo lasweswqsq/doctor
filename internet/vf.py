@@ -12,6 +12,11 @@ app=FastAPI()
 
 比如，下面用于处理集合资源访问的视图函数就定义了两个查询参数：
 '''
+#http://127.0.0.1:8000/items/?skip=20&limit=15
+#http://127.0.0.1:8000/items/  <———默认参数
+
+
+
 @app.get("/items/")
 async def get_items(skip: int = 0, limit: int = 10):
     return {"items": [], "skip": skip, "limit": limit}

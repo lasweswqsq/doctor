@@ -14,7 +14,7 @@ async def get_book_info(book_id:int, title:str = None):
 #this down one would not count
 
 #same website name only counts the first
-@app.get("/iems/{book_id}")
+@app.get("/items/{book_id}")
 async def get_book_info(book_id:int, title:str = None):
     return {"hsgdh":book_id,"jddhq93":"iw"}
 #get_item(12,'3gfwyug')
