@@ -161,7 +161,8 @@ fastapi has many advantages, including perfect function, quick coding, rare bugs
 i have screenshoted a photo and moved it to the suitcase 'doctor/internet'
 i and my teacher work together to dash through many difficulties, it was such a different expreience like we are just warriors being stuck in a trap and we tried every means to pull ourselves out and gain freedom again
 and it struck me that if i want to use a server, i must first feed some related data into it so it could run soomthly
-
+oh the file name can't be editted like there are spaces in it
+the things on the internet is such a puzzling thing that I asked tens of hundreds of questions before i finally understood the operating mechanism of fastapi
 
 
 
