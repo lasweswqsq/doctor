@@ -16,7 +16,9 @@ app=FastAPI()
 #http://127.0.0.1:8000/items/  <———默认参数
 
 
-
+#此外，因为我们在定义视图函数时，为查询参数 skip 和 limit 指定了默认值，因此查询参数将变为可选的，缺省时将使用默认值。
+#https://www.baidu.com/
+#https://www.baidu.com/s?wd=%E9%BB%98%E8%AE%A4%E5%80%BC%20%E8%8B%B1%E6%96%87&ie=utf-8&tn=15007414_2_pg
 @app.get("/items/")
 async def get_items(skip: int = 0, limit: int = 10):
     return {"items": [], "skip": skip, "limit": limit}
