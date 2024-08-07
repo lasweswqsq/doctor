@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>数据库数据</title>
+</head>
+<body>
+    <h1>数据库数据</h1>
+    <table border="1">
+        <tr>
+            <th>列1</th>
+            <th>列2</th>
+            <!添加更多列标题 >
+        </tr>
+        <?php while ($row = $result>fetch_assoc()): ?>
+        <tr>
+            <td><?php echo $row['column1']; ?></td>
+            <td><?php echo $row['column2']; ?></td>
+            <!添加更多列数据 >
+        </tr>
+        <?php endwhile; ?>
+    </table>
+</body>
+</html>
