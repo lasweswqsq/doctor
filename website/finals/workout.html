@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+    
+<html>
+    <style>
+    body {
+        background-color:#d2a9ce;
+        text-align:center;
+        font:100 22px/1.2 "楷体", Helvetica, Arial, sans-serif;
+    }
+    h1 {
+        color:rgb(105, 147, 177);
+        text-align:center;
+        font:800 36px/1.2 "楷体", Helvetica, Arial, sans-serif;
+    }
+    </style>
+
+    <head>
+        <meta charset="utf-8">
+        <title>Library Management System</title>
+    </head>
+
+    <head>
+        <script>
+        function validateForm(){
+        var x=document.forms["myForm"]["fname"].value;
+        if (x==null || x==""){
+          alert("书名必须填写");
+          return false;
+          }
+        }
+        </script>
+    </head>
+
+    <body>
+        <h1>图书管理查询</h1>
+        
+        
+        <form name="myForm" action="C:\ProgramData\MySQL\MySQL Server 5.7\Data\" onsubmit="return validateForm()" method="post">
+            书名模糊搜索: <input type="text" name="fname">
+            <input type="submit" value="提交">
+        </form>
+
+        
+        
+    </body>
+</html>
