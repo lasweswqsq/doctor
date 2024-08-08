@@ -29,25 +29,13 @@
         <link rel="stylesheet" type="text/css" href="./style.css"/>
     </head>
 
-    <head>
-        <script>
-        function Fun(){
-        var x=document.forms["query"].value;
-        if (x==null || x==""){
-          alert("书名必须填写");
-          return false;
-          }
-        }
-        </script>
-    </head>
-
     <body>
         <h1>图书管理查询</h1>
         
         
 
-        <form name="sql action="C:\ProgramData\MySQL\MySQL Server 5.7\Data\" oncilck="Fun()" method="post">
-            书名模糊搜索: <input type="text" id="query_input" name="name" oncilck="Fun()">
+        <form name="sql action="C:\ProgramData\MySQL\MySQL Server 5.7\Data\"  method="post">
+            书名模糊搜索: <input type="text" id="query_input" name="name" >
             <input type="button" id="query_submit" value="提交">
         </form>
 

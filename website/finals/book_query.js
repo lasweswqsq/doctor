@@ -5,15 +5,15 @@ $(function(){
         $.get("http://127.0.0.1:8000/items/" + query,function(data,status){
             //        IP        端口号
             //请求了"http://127.0.0.1:8000/items/" + query的地址
-            if (query==null || query==""){
-            alert("书名必须填写");
-            return false;
-            }
-        
             alert("数据: " + data + "\n状态: " + status);
+            $("#btn2").click(function(){
+                $("ol").append("<li>追加列表项</li>");
+              });
+            });
           });
+
     })
-})
+
 
 
 
