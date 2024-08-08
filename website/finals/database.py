@@ -1,5 +1,9 @@
+from multiprocessing.resource_tracker import getfd
 import pymysql
 import pprint as pp
+from fastapi.middleware.cors import CORSMiddleware
+
+
 
 conn = pymysql.connect(
     host='DTY-AI-PC',  # 主机名
@@ -9,38 +13,28 @@ conn = pymysql.connect(
     database='book_manager',   # 数据库名称
 )
 
-print(conn)
 
-#游标实际上是一种能从包括多条数据记录的结果集中每次提取一条记录的机制
-#尽管游标能遍历结果中的所有行，但他一次只指向一行。
-#游标的一个常见用途就是保存查询结果，以便以后使用。 游标的结果集是由SELECT语句产生，如果处理过程需要重复使用一个记录集，那么创建一次游标而重复使用若干次，比重复查询数据库要快的多。
+from fastapi import FastAPI
 
-#创建游标
-cursor = conn.cursor()
-# 执行 SQL 查询语句
-cursor.execute("SELECT * FROM book WHERE author = '12wehd723b'")
+app = FastAPI()
 
-#cursor.execute("SELECT * FROM book WHERE author = '2'")
-#cursor.execute("UPDATE book set author='12wehd723b' where title='123124';")
-#update,insert could not be run
+# 配置允许的源列表 
+origins = ["*" ] 
+# 添加 CORS 中间件 
+app.add_middleware(CORSMiddleware, 
+                   allow_origins=origins, 
+                   allow_credentials=True, # 允许携带认证信息 
+                   allow_methods=["*"], # 允许所有方法（GET, POST, PUT, DELETE 等） 
+                   allow_headers=["*"], # 允许所有头信息 
+                   )
 
+#same website name only counts the first
+@app.get("/items/{title}")
+async def get_book_info(title:str):
+    #创建游标
+    cursor = conn.cursor()
+    # 执行 SQL 查询语句
+    cursor.execute("SELECT * FROM book WHERE title like %s", ("%"+title+"%"))
 
-
-#execute 会产生覆盖效果，不会报错
-# 获取查询结果
-result = cursor.fetchall()
-
-#this is useful
-pp.pprint(result)
-
-import pandas as pd
-# 将查询结果转化为 Pandas dataframe 对象
-df = pd.DataFrame(result, columns=[i[0] for i in cursor.description])
-
-print(df)
-#this is useless
-pp.pprint(df)
-
-# 关闭游标和数据库连接
-cursor.close()
-conn.close()
+    result = cursor.fetchall()
+    return result
