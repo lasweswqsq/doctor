@@ -7,9 +7,9 @@ $(function(){
             //请求了"http://127.0.0.1:8000/items/" + query的地址
             alert("数据: " + data + "\n状态: " + status);
 
-            $("query_submit").click(function(){
-                $("book_table").append(<li>data</li>);
-              });
+//            $("query_submit").click(function(){
+//                $("book_table").append(<li>data</li>);
+//              });
             });
           });
 
