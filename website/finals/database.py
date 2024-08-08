@@ -38,3 +38,4 @@ async def get_book_info(title:str):
 
     result = cursor.fetchall()
     return result
+#uvicorn database:app --reload
