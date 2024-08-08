@@ -12,8 +12,15 @@
         text-align:center;
         font:800 36px/1.2 "楷体", Helvetica, Arial, sans-serif;
     }
+    p {
+        color:#683737c4;
+        text-align:;
+        font:500 22px/1.2 "楷体", Helvetica, Arial, sans-serif;
+    }
     </style>
-
+    <script>
+        window.alert('welcome to this library management system');
+    </script>
     <head>
         <meta charset="utf-8">
         <title>Library Management System</title>
@@ -38,6 +45,7 @@
         <h1>图书管理查询</h1>
         
         
+
         <form name="sql action="C:\ProgramData\MySQL\MySQL Server 5.7\Data\" onsubmit="return validateForm()" method="post">
             书名模糊搜索: <input type="text" id="query_input" name="name">
             <input type="button" id="query_submit" value="提交">
@@ -52,7 +60,27 @@
                 <th>create_time</th>
                 <th>creator</th>
             </tr>
-            
         </table>
+            
+        <p id="demo">我的第一个段落。</p>
+        <script>
+            document.getElementById("demo").innerHTML = "你好 heima";
+        </script>
+        
+        <p>
+            <button type="button" onclick="myFunction()">点击这里</button>
+        </p>
+
+        <script>
+            function myFunction(){
+            document.getElementById("demo").innerHTML="你好hiema\t你最近怎么样?";
+        }
+        </script>
+
+        <script>
+            document.write(Date());
+        </script>
+
+        
     </body>
 </html>
