@@ -50,7 +50,17 @@
             </tr>
         </table>
 
-
+        <script>
+            $(document).ready(function(){
+              $("#btn1").click(function(){
+                $("p").append(" <b>追加文本</b>。");
+              });
+            
+              $("query_submit").click(function(){
+                $("ol").append("<li>新列表项</li>");
+              });
+            });
+        </script>
             
         <p id="demo">我的第一个段落。</p>
         <script>
