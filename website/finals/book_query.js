@@ -8,7 +8,7 @@ $(function(){
             alert("数据: " + data + "\n状态: " + status);
 
             $("query_submit").click(function(){
-                $("book_table").append(data);
+                $("book_table").append(<li>data</li>);
               });
             });
           });
