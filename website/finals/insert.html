@@ -35,20 +35,14 @@
         
 
         <form name="sql action="C:\ProgramData\MySQL\MySQL Server 5.7\Data\"  method="post">
-            <label for="id">编号:</label>
-            <input type="text" id="title" name="title" required><br><br>
             <label for="title">书名:</label>
             <input type="text" id="title" name="title" required><br><br>
             <label for="author">作者:</label>
             <input type="text" id="author" name="author" required><br><br>
             <label for="time">出版时间:</label>
-            <input type="text" id="time" name="time" required><br><br>
-            <label for="create_time">创建时间:</label>
-            <input type="text" id="create_time" name="create_time" required><br><br>
+            <input type="datetime-local" id="time" name="time" required><br><br>
             <label for="creator">创建者:</label>
             <input type="text" id="creator" name="creator" required><br><br>
-            <label for="status">状态:</label>
-            <input type="text" id="status" name="status" required><br><br>
             <input type="button" id="book_submit" value="提交">
         </form>
 
@@ -61,7 +55,6 @@
                 <th>create_time</th>
                 <th>creator</th>
                 <th>status</th>
-                <th>option</th>
             </tr>
         </table>
 

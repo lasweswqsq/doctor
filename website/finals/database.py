@@ -1,6 +1,6 @@
-from multiprocessing.resource_tracker import getfd
+
 import pymysql
-import pprint as pp
+import datetime
 from fastapi.middleware.cors import CORSMiddleware
 
 
@@ -67,11 +67,12 @@ async def ps_book_info(user:str,password:str):
         return 0
     
 
-@app.post("/items/add/{id}/{title}/{author}/{time}/{create_time}/{creator}/{status}")
-async def ps_book_info(id:int,title:str,author:str,time:str,create_time:str,creator:str,status:int):
+@app.post("/items/add/{title}/{author}/{time}/{creator}")
+async def ps_book_info(title:str,author:str,time:str,creator:str):
     cursor = conn.cursor()
+    create_time = datetime.datetime.now()
     # 执行 SQL 查询语句
-    cursor.execute("INSERT INTO book (id,title,author,time,create_time,creator,status) VALUES (%s,%s)", (id,title,author,time,create_time,creator,status))
+    cursor.execute("INSERT INTO book (title,author,time,create_time,creator,status) VALUES (%s,%s,%s,%s,%s,0)", (title,author,time,create_time,creator))
     conn.commit()
     return 0
 
