@@ -66,15 +66,16 @@ async def ps_book_info(user:str,password:str):
     else:
         return 0
     
- var id = $("#id").val();
-        var title = $("#title").val();
-        var author = $("#author").val();
-        var time = $("#time").val();
-        var create_time = $("#create_time").val();
-        var creator = $("#creator").val();
-        var status = $("#status").val();
 
- @app.post("/items/add/{user}/{password}")
+@app.post("/items/add/{id}/{title}/{author}/{time}/{create_time}/{creator}/{status}")
+async def ps_book_info(id:int,title:str,author:str,time:str,create_time:str,creator:str,status:int):
+    cursor = conn.cursor()
+    # 执行 SQL 查询语句
+    cursor.execute("INSERT INTO book (id,title,author,time,create_time,creator,status) VALUES (%s,%s)", (id,title,author,time,create_time,creator,status))
+    conn.commit()
+    return 0
+
+
 
 #uvicorn database:app --reload
 
