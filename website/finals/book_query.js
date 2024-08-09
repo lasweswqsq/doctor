@@ -24,24 +24,25 @@ $(function(){
                 //location.href = "workout.html";
                 var container = document.getElementById("buttonContainer1");
                 // 使用innerHTML添加按钮
-                container.innerHTML = '<button onclick="select" class="btn" id="workout_button">查询图书</button>';
+                container.innerHTML = '<button class="btn" id="workout_button">查询图书</button>';
                 var container = document.getElementById("buttonContainer2");
                 // 使用innerHTML添加按钮
-                container.innerHTML = '<button onclick="insert" class="btn" id="insert_button">录入图书</button>';
+                container.innerHTML = '<button class="btn" id="insert_button">录入图书</button>';
                 var container = document.getElementById("buttonContainer3");
                 // 使用innerHTML添加按钮
-                container.innerHTML = '<button onclick="update" class="btn" id="update_button">修改图书</button>';
+                container.innerHTML = '<button class="btn" id="update_button">修改图书</button>';
                 var container = document.getElementById("buttonContainer4");
                 // 使用innerHTML添加按钮
-                container.innerHTML = '<button onclick="delete" class="btn" id="delete_button">删除图书</button>';
+                container.innerHTML = '<button class="btn" id="delete_button">删除图书</button>';
+                $("#workout_button").on("click", function(e){
+                    location.href = "workout.html";
+                })
             }else{
                 alert("用户名或密码错误");
             }
         })
     })
-    $("#select").on("click", function(e){
-        location.href = "workout.html";
-    })
+    
 })
 
 
