@@ -18,14 +18,14 @@ print(conn)
 #创建游标
 cursor = conn.cursor()
 # 执行 SQL 查询语句
-cursor.execute("SELECT * FROM book WHERE author = '12wehd723b'")
+# cursor.execute("SELECT * FROM book WHERE author = '12wehd723b'")
 
 #cursor.execute("SELECT * FROM book WHERE author = '2'")
-#cursor.execute("UPDATE book set author='12wehd723b' where title='123124';")
+cursor.execute("UPDATE book set author='12wehd723b' where title='123124';")
 #update,insert could not be run
 
 
-
+'''
 #execute 会产生覆盖效果，不会报错
 # 获取查询结果
 result = cursor.fetchall()
@@ -44,7 +44,7 @@ pp.pprint(df)
 # 关闭游标和数据库连接
 cursor.close()
 conn.close()
-
+'''
 
 
 

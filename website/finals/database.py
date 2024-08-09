@@ -38,4 +38,12 @@ async def get_book_info(title:str):
 
     result = cursor.fetchall()
     return result
+
+
+@app.get("/items/borrow/{id}")
+async def get_book_info(id:int):
+    cursor = conn.cursor()
+    # 执行 SQL 查询语句
+    cursor.execute("UPDATE book set status=1 where id=id;")
+
 #uvicorn database:app --reload
