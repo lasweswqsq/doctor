@@ -22,18 +22,18 @@ $(function(){
             alert("数据: " + data + "\n状态: " + status);
             if(data == 1){
                 //location.href = "workout.html";
-                var container = document.getElementById("buttonContainer");
+                var container = document.getElementById("buttonContainer1");
                 // 使用innerHTML添加按钮
-                container.innerHTML = '<button onclick="select">查询图书</button>';
-                var container = document.getElementById("buttonContainer");
+                container.innerHTML = '<button onclick="select" class="btn">查询图书</button>';
+                var container = document.getElementById("buttonContainer2");
                 // 使用innerHTML添加按钮
-                container.innerHTML = '<button onclick="insert">录入图书</button>';
-                var container = document.getElementById("buttonContainer");
+                container.innerHTML = '<button onclick="insert" class="btn">录入图书</button>';
+                var container = document.getElementById("buttonContainer3");
                 // 使用innerHTML添加按钮
-                container.innerHTML = '<button onclick="update">修改图书</button>';
-                var container = document.getElementById("buttonContainer");
+                container.innerHTML = '<button onclick="update" class="btn">修改图书</button>';
+                var container = document.getElementById("buttonContainer4");
                 // 使用innerHTML添加按钮
-                container.innerHTML = '<button onclick="delete">删除图书</button>';
+                container.innerHTML = '<button onclick="delete" class="btn">删除图书</button>';
             }else{
                 alert("用户名或密码错误");
             }
