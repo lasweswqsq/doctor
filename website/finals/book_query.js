@@ -21,7 +21,19 @@ $(function(){
         $.post("http://127.0.0.1:8000/users/" + user + "/" + password, function(data, status) {
             alert("数据: " + data + "\n状态: " + status);
             if(data == 1){
-                location.href = "workout.html";
+                //location.href = "workout.html";
+                var container = document.getElementById("buttonContainer");
+                // 使用innerHTML添加按钮
+                container.innerHTML = '<button onclick="select">查询图书</button>';
+                var container = document.getElementById("buttonContainer");
+                // 使用innerHTML添加按钮
+                container.innerHTML = '<button onclick="insert">录入图书</button>';
+                var container = document.getElementById("buttonContainer");
+                // 使用innerHTML添加按钮
+                container.innerHTML = '<button onclick="update">修改图书</button>';
+                var container = document.getElementById("buttonContainer");
+                // 使用innerHTML添加按钮
+                container.innerHTML = '<button onclick="delete">删除图书</button>';
             }else{
                 alert("用户名或密码错误");
             }
