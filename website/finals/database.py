@@ -65,6 +65,16 @@ async def ps_book_info(user:str,password:str):
         return 1
     else:
         return 0
+    
+ var id = $("#id").val();
+        var title = $("#title").val();
+        var author = $("#author").val();
+        var time = $("#time").val();
+        var create_time = $("#create_time").val();
+        var creator = $("#creator").val();
+        var status = $("#status").val();
+
+ @app.post("/items/add/{user}/{password}")
 
 #uvicorn database:app --reload
 

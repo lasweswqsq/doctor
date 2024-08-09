@@ -37,9 +37,30 @@ $(function(){
                 $("#workout_button").on("click", function(e){
                     location.href = "workout.html";
                 })
+                $("#insert_button").on("click", function(e){
+                    location.href = "insert.html";
+                })             
+                $("#update_button").on("click", function(e){
+                    location.href = "update.html";
+                })
+                $("#delete_button").on("click", function(e){
+                    location.href = "delete.html";
+                })
             }else{
                 alert("用户名或密码错误");
             }
+        })
+    })
+    $("#book_submit").on("click", function(e){
+        var id = $("#id").val();
+        var title = $("#title").val();
+        var author = $("#author").val();
+        var time = $("#time").val();
+        var create_time = $("#create_time").val();
+        var creator = $("#creator").val();
+        var status = $("#status").val();
+        $.post("http://127.0.0.1:8000/items/add/" + id + "/" + title + "/" + author + "/" + time + "/" + create_time + "/" + creator + "/" + status, function(data, status) {
+            alert("数据: " + data + "\n状态: " + status);
         })
     })
     

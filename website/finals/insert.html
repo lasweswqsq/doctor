@@ -30,13 +30,26 @@
     </head>
 
     <body>
-        <h1>图书管理查询</h1>
+        <h1>图书管理录入</h1>
         
         
 
         <form name="sql action="C:\ProgramData\MySQL\MySQL Server 5.7\Data\"  method="post">
-            书名模糊搜索: <input type="text" id="query_input" name="name" >
-            <input type="button" id="query_submit" value="提交">
+            <label for="id">编号:</label>
+            <input type="text" id="title" name="title" required><br><br>
+            <label for="title">书名:</label>
+            <input type="text" id="title" name="title" required><br><br>
+            <label for="author">作者:</label>
+            <input type="text" id="author" name="author" required><br><br>
+            <label for="time">出版时间:</label>
+            <input type="text" id="time" name="time" required><br><br>
+            <label for="create_time">创建时间:</label>
+            <input type="text" id="create_time" name="create_time" required><br><br>
+            <label for="creator">创建者:</label>
+            <input type="text" id="creator" name="creator" required><br><br>
+            <label for="status">状态:</label>
+            <input type="text" id="status" name="status" required><br><br>
+            <input type="button" id="book_submit" value="提交">
         </form>
 
         <table border="1" align="center" id="book_table">
@@ -52,17 +65,7 @@
             </tr>
         </table>
 
-        <script>
-            $(document).ready(function(){
-              $("#btn1").click(function(){
-                $("p").append(" <b>追加文本</b>。");
-              });
-            
-              $("query_submit").click(function(){
-                $("ol").append("<li>新列表项</li>");
-              });
-            });
-        </script>
+
             
         <p id="demo">我的第一个段落。</p>
         <script>
