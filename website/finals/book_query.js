@@ -39,7 +39,7 @@ $(function(){
             }
         })
     })
-    $("#workout_button").on("click", function(e){
+    $("#select").on("click", function(e){
         location.href = "workout.html";
     })
 })
