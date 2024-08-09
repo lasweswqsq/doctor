@@ -203,7 +203,14 @@ i have tried typing chinese today, but this artificial intelligence can not reco
 
 
 
-
+8/9 Friday
+back to work at ten sventeen, i feel refreshed because i had a good nights sleep
+continuing the work of my consturction of the library management system, i am forging ahead to a greater destiny
+there are more and more htmls flooding into my body, which makes me feel like a tiny ship floating on the vast ocean, being swept by the ups and downs of the waves
+this time my teacher ordered me to develop a login page so that librarians can get access to the system by using the mouse to click on the page to do something
+little tip: the librarian dosen't equals the admin, in that case, the librarian has only a few rights
+Ang also, we can not grant the librarian all the access, because she could destroy the priceless data in the database deliberately
+ 
 
 
 

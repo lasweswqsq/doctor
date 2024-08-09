@@ -40,10 +40,22 @@ async def get_book_info(title:str):
     return result
 
 
-@app.get("/items/borrow/{id}")
+@app.post("/items/borrow/{id}")
 async def get_book_info(id:int):
     cursor = conn.cursor()
     # 执行 SQL 查询语句
-    cursor.execute("UPDATE book set status=1 where id=id;")
+    cursor.execute("UPDATE book set status=1 where id=%s", id)
+    return 0
+
+@app.post("/items/return/{id}")
+async def fridge_book_info(id:int):
+    cursor = conn.cursor()
+    # 执行 SQL 查询语句
+    cursor.execute("UPDATE book set status=0 where id=%s", id)
+    return 0
 
 #uvicorn database:app --reload
+
+
+
+

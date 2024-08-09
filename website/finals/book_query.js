@@ -8,7 +8,9 @@ $(function(){
             //请求了"http://127.0.0.1:8000/items/" + query的地址
             alert("数据: " + data + "\n状态: " + status);
             for(var i=0;i<data.length;i++){
-                addRow(data[i][0], data[i][1], data[i][2], data[i][3], data[i][4], data[i][5], data[i][6]);
+                //循环遍历data数组，并将数据添加到表格中
+                var statusDesc= data[i][6]==0?"未借出":"已借出"; //判断书籍状态，0为未借出，1为已借出
+                addRow(data[i][0], data[i][1], data[i][2], data[i][3], data[i][4], data[i][5], statusDesc);
             }
 
         })
@@ -27,7 +29,6 @@ function addRow(id, title, author,time,create_time,creator,status) {
     var cell6 = newRow.insertCell(5); // 在新行中插入第三个单元格
     var cell7 = newRow.insertCell(6);
     var cell8 = newRow.insertCell(7);
-    var cell9 = newRow.insertCell(8);
     cell1.textContent = id; // 设置单元格内容
     cell2.textContent = title;
     cell3.textContent = author;
@@ -35,14 +36,23 @@ function addRow(id, title, author,time,create_time,creator,status) {
     cell5.textContent = create_time;
     cell6.textContent = creator;
     cell7.textContent = status;
-    cell8.innerHTML = "<button onclick='borrow(" + id + ")'>借书</button>"; // 设置单元格内容
-    cell9.innerHTML = "<button onclick='return(" + id + ")'>还书</button>"; // 设置单元格内容
+    if(status == '已借出'){
+        cell8.innerHTML = "<button onclick='retu(" + id + ")'>还书</button>"; // 设置单元格内容
+    }else{
+        cell8.innerHTML = "<button onclick='borrow(" + id + ")'>借书</button>"; // 设置单元格内容
+    }
 }
 
 
 
 function borrow(id) {
-    $.get("/items/borrow/" + id, function() {
+    $.post("http://127.0.0.1:8000/items/borrow/" + id, function(data, status) {
         alert("借阅成功");
+    });
+}
+
+function retu(id) {
+    $.post("http://127.0.0.1:8000/items/return/" + id, function(data, status) {
+        alert("还书成功");
     });
 }
