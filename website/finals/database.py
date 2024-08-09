@@ -14,7 +14,7 @@ conn = pymysql.connect(
 )
 
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Form
 
 app = FastAPI()
 
@@ -41,7 +41,7 @@ async def get_book_info(title:str):
 
 
 @app.post("/items/borrow/{id}")
-async def get_book_info(id:int):
+async def patch_book_info(id:int):
     cursor = conn.cursor()
     # 执行 SQL 查询语句
     cursor.execute("UPDATE book set status=1 where id=%s", id)
@@ -54,8 +54,21 @@ async def fridge_book_info(id:int):
     cursor.execute("UPDATE book set status=0 where id=%s", id)
     return 0
 
+
+@app.post("/users/{user}/{password}")
+async def ps_book_info(user:str,password:str):
+    cursor = conn.cursor()
+    # 执行 SQL 查询语句
+    cursor.execute("SELECT * FROM user WHERE name=%s AND password=%s", (user, password))
+    result = cursor.fetchall()
+    if result:
+        return 1
+    else:
+        return 0
+
 #uvicorn database:app --reload
 
-
+#@app.post("/users/{user}/{password}")
+#async def ps_book_info(user:str,password:str):
 
 

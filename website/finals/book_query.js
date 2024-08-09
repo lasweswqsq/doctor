@@ -15,6 +15,18 @@ $(function(){
 
         })
     })
+    $("#user_submit").on("click", function(e){
+        var user = $("#user_input").val();
+        var password = $("#password_input").val();
+        $.post("http://127.0.0.1:8000/users/" + user + "/" + password, function(data, status) {
+            alert("数据: " + data + "\n状态: " + status);
+            if(data == 1){
+                location.href = "workout.html";
+            }else{
+                alert("用户名或密码错误");
+            }
+        })
+    })
 })
 
 
