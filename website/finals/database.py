@@ -44,7 +44,9 @@ async def get_book_info(title:str):
 async def patch_book_info(id:int):
     cursor = conn.cursor()
     # 执行 SQL 查询语句
+    print(id)
     cursor.execute("UPDATE book set status=1 where id=%s", id)
+    conn.commit()
     return 0
 
 @app.post("/items/return/{id}")
@@ -52,6 +54,7 @@ async def fridge_book_info(id:int):
     cursor = conn.cursor()
     # 执行 SQL 查询语句
     cursor.execute("UPDATE book set status=0 where id=%s", id)
+    conn.commit()
     return 0
 
 
