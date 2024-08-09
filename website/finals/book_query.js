@@ -74,7 +74,6 @@ function addRow1(id, title, author,time,create_time,creator,status) {
     var cell5 = newRow.insertCell(4); // 在新行中插入第二个单元格
     var cell6 = newRow.insertCell(5); // 在新行中插入第三个单元格
     var cell7 = newRow.insertCell(6);
-    var cell8 = newRow.insertCell(7);
     cell1.textContent = id; // 设置单元格内容
     cell2.textContent = title;
     cell3.textContent = author;
