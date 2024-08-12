@@ -49,7 +49,7 @@ $(function(){
             addRow1("——", title, author, time, "now", creator, "未借出");
         })
     })
-    $("book_update").on("click", function(e){
+    $("#book_update").on("click", function(e){
         //假设 URL 是:https://example.com/?param1=value1&param2=value2
         const currentURL = window.location.href;
         //1.创建一个 URL 对象/ 2.
@@ -65,6 +65,7 @@ $(function(){
             alert("修改成功");   
         })
     })
+    
 })
 
 function addRow1(id, title, author,time,create_time,creator,status) {

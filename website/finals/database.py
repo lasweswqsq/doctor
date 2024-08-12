@@ -88,6 +88,14 @@ async def ps2_book_info(id:int,title:str,author:str,time:str):
     conn.commit()
     return 0
 
+@app.post("/items/{id}")
+async def ps21_book_info(id:int):
+    cursor = conn.cursor()
+    cursor.execute("select * from book where id=%s", id)
+    result = cursor.fetchone()
+    return result
+
+
 #uvicorn database:app --reload
 
 #@app.post("/users/{user}/{password}")

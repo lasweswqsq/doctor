@@ -53,7 +53,15 @@
             const params = new URLSearchParams(url.search);
             //4.提取单个参数
             const id = params.get('id');//输出:'value1constparam1
-            alert(id);
+            $.get("http://127.0.0.1:8000/items/" + id,function(data,status){
+                console.log(data);
+                console.log(status);
+                $("#title").val(data.title);
+                $("#author").val(data.author);
+                $("#time").val(data.time);
+
+            });
+
         </script>
            
         <p id="demo">我的第一个段落。</p>
