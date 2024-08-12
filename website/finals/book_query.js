@@ -28,24 +28,12 @@ $(function(){
                 var container = document.getElementById("buttonContainer2");
                 // 使用innerHTML添加按钮
                 container.innerHTML = '<button class="btn" id="insert_button">录入图书</button>';
-                var container = document.getElementById("buttonContainer3");
-                // 使用innerHTML添加按钮
-                container.innerHTML = '<button class="btn" id="update_button">修改图书</button>';
-                var container = document.getElementById("buttonContainer4");
-                // 使用innerHTML添加按钮
-                container.innerHTML = '<button class="btn" id="delete_button">删除图书</button>';
                 $("#workout_button").on("click", function(e){
                     location.href = "workout.html";
                 })
                 $("#insert_button").on("click", function(e){
                     location.href = "insert.html";
                 })             
-                $("#update_button").on("click", function(e){
-                    location.href = "update.html";
-                })
-                $("#delete_button").on("click", function(e){
-                    location.href = "delete.html";
-                })
             }else{
                 alert("用户名或密码错误");
             }
@@ -61,7 +49,15 @@ $(function(){
             addRow1("——", title, author, time, "now", creator, "未借出");
         })
     })
-    
+    $("book_update").on("click", function(e){
+        var id = $("#id").val();
+        var title = $("#title").val();
+        var author = $("#author").val();
+        var time = $("#time").val();    
+        $.post(`http://127.0.0.1:8000/items/update/${id}/${title}/${author}/${time}`, function(data, status) {
+            alert("修改成功");   
+        })
+    })
 })
 
 function addRow1(id, title, author,time,create_time,creator,status) {
@@ -107,9 +103,28 @@ function addRow(id, title, author,time,create_time,creator,status) {
     }else{
         cell8.innerHTML = "<button onclick='borrow(" + id + ")'>借书</button>"; // 设置单元格内容
     }
-    cell8.innerHTML = "<button onclick='borrow(" + id + ")'>修改</button>"; // 设置单元格内容;
+    cell8.innerHTML = "<button onclick='update(" + id + ")'>修改</button>"; // 设置单元格内容;
+    cell9.innerHTML = `<button onclick='delet(${id})'>删除</button>`; // 设置单元格内容;
 }
 
+function update(id) {
+    location.href = "update.html?id=" + id;
+}
+
+
+function delet(id) {
+    $.post("http://127.0.0.1:8000/items/delete/" + id, function(data, status) {
+        alert("删除成功");
+        var table = document.getElementById("book_table");
+        var rows = table.rows;
+        for (var i = 0; i < rows.length; i++) {
+            if (rows[i].cells[0].textContent == id) {
+                table.deleteRow(i);
+                break;
+            }
+        }
+    });
+}
 
 
 function borrow(id) {
