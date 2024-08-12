@@ -50,7 +50,14 @@ $(function(){
         })
     })
     $("book_update").on("click", function(e){
-        var id = $("#id").val();
+        //假设 URL 是:https://example.com/?param1=value1&param2=value2
+        const currentURL = window.location.href;
+        //1.创建一个 URL 对象/ 2.
+        const url = new URL(currentURL);
+        //3.获取查询参数
+        const params = new URLSearchParams(url.search);
+        //4.提取单个参数
+        const id = params.get('id');//输出:'value1constparam1
         var title = $("#title").val();
         var author = $("#author").val();
         var time = $("#time").val();    
@@ -91,6 +98,7 @@ function addRow(id, title, author,time,create_time,creator,status) {
     var cell7 = newRow.insertCell(6);
     var cell8 = newRow.insertCell(7);
     var cell9 = newRow.insertCell(8);
+    var cell10 = newRow.insertCell(9);
     cell1.textContent = id; // 设置单元格内容
     cell2.textContent = title;
     cell3.textContent = author;
@@ -103,8 +111,8 @@ function addRow(id, title, author,time,create_time,creator,status) {
     }else{
         cell8.innerHTML = "<button onclick='borrow(" + id + ")'>借书</button>"; // 设置单元格内容
     }
-    cell8.innerHTML = "<button onclick='update(" + id + ")'>修改</button>"; // 设置单元格内容;
-    cell9.innerHTML = `<button onclick='delet(${id})'>删除</button>`; // 设置单元格内容;
+    cell9.innerHTML = "<button onclick='update(" + id + ")'>修改</button>"; // 设置单元格内容;
+    cell10.innerHTML = `<button onclick='delet(${id})'>删除</button>`; // 设置单元格内容;
 }
 
 function update(id) {

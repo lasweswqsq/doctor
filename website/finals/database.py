@@ -79,12 +79,12 @@ async def ps_book_info(title:str,author:str,time:str,creator:str):
     conn.commit()
     return 0
 
-@app.post("/items/update/{title}/{author}/{time}")
-async def ps2_book_info(title:str,author:str,time:str):
+@app.post("/items/update/{id}/{title}/{author}/{time}")
+async def ps2_book_info(id:int,title:str,author:str,time:str):
     cursor = conn.cursor()
     create_time = datetime.datetime.now()
     # 执行 SQL 查询语句
-    cursor.execute("INSERT INTO book (title,author,time,create_time,creator,status) VALUES (%s,%s,%s,%s,%s,0)", (title,author,time,create_time,creator))
+    cursor.execute("UPDATE book SET title=%s,author=%s,time=%s,create_time=%s WHERE id=%s", (title,author,time,create_time,id))
     conn.commit()
     return 0
 

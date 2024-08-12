@@ -43,6 +43,18 @@
             <input type="datetime-local" id="time" name="time" required><br><br>
             <input type="button" id="book_update" value="提交">
         </form>
+
+        <script>
+            //假设 URL 是:https://example.com/?param1=value1&param2=value2
+            const currentURL = window.location.href;
+            //1.创建一个 URL 对象/ 2.
+            const url = new URL(currentURL);
+            //3.获取查询参数
+            const params = new URLSearchParams(url.search);
+            //4.提取单个参数
+            const id = params.get('id');//输出:'value1constparam1
+            alert(id);
+        </script>
            
         <p id="demo">我的第一个段落。</p>
         <script>
