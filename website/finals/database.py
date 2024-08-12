@@ -115,7 +115,7 @@ async def get_book_info(title:str):
     cursor.execute("SELECT * FROM book WHERE title like %s", ("%"+title+"%"))
     result = cursor.fetchall()
     result=str(result)
-    with open("book.txt","w",encoding="utf-8") as f:
+    with open("d://temp//book.txt","w",encoding="utf-8") as f:
         f.write(result)
     # 获取文件的绝对路径
     file_path = os.path.abspath("book.txt")
