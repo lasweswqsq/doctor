@@ -70,7 +70,7 @@ $(function(){
         $("#export_submit").on("click", function(e){
             var query = $("#query_input").val();
             $.get(`http://127.0.0.1:8000/items/export/${query}`, function(data, status) {
-                downloadFile(data)
+                downloadFile(`http://127.0.0.1:8000/items/export/${query}`)
                 alert("导出成功");               
             })
         })
