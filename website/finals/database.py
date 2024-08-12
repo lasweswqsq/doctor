@@ -88,11 +88,13 @@ async def ps2_book_info(id:int,title:str,author:str,time:str):
     conn.commit()
     return 0
 
-@app.post("/items/{id}")
+@app.get("/item/{id}")
 async def ps21_book_info(id:int):
+    print(id)
     cursor = conn.cursor()
     cursor.execute("select * from book where id=%s", id)
     result = cursor.fetchone()
+    print(result)
     return result
 
 

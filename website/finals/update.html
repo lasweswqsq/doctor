@@ -32,7 +32,24 @@
     <body>
         <h1>图书管理修改</h1>
         
-        
+        <script>
+            var data = "";
+            //假设 URL 是:https://example.com/?param1=value1&param2=value2
+            const currentURL = window.location.href;
+            //1.创建一个 URL 对象/ 2.
+            const url = new URL(currentURL);
+            //3.获取查询参数
+            const params = new URLSearchParams(url.search);
+            //4.提取单个参数
+            const id = params.get('id');//输出:'value1constparam1
+            $.get("http://127.0.0.1:8000/item/" + id,function(data){
+                console.log(data);
+                $("#title").val(data[1]);
+                $("#author").val(data[2]);
+                $("#time").val(data[3]);
+
+            });
+            </script>
 
         <form name="sql action="C:\ProgramData\MySQL\MySQL Server 5.7\Data\"  method="post">
             <label for="title">书名:</label>
@@ -44,25 +61,7 @@
             <input type="button" id="book_update" value="提交">
         </form>
 
-        <script>
-            //假设 URL 是:https://example.com/?param1=value1&param2=value2
-            const currentURL = window.location.href;
-            //1.创建一个 URL 对象/ 2.
-            const url = new URL(currentURL);
-            //3.获取查询参数
-            const params = new URLSearchParams(url.search);
-            //4.提取单个参数
-            const id = params.get('id');//输出:'value1constparam1
-            $.get("http://127.0.0.1:8000/items/" + id,function(data,status){
-                console.log(data);
-                console.log(status);
-                $("#title").val(data[1]);
-                $("#author").val(data[2]);
-                $("#time").val(data[3]);
-
-            });
-
-        </script>
+       
            
         <p id="demo">我的第一个段落。</p>
         <script>
