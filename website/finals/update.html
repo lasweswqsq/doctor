@@ -56,9 +56,9 @@
             $.get("http://127.0.0.1:8000/items/" + id,function(data,status){
                 console.log(data);
                 console.log(status);
-                $("#title").val(data.title);
-                $("#author").val(data.author);
-                $("#time").val(data.time);
+                $("#title").val(data[1]);
+                $("#author").val(data[2]);
+                $("#time").val(data[3]);
 
             });
 
