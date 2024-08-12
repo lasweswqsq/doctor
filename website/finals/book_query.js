@@ -65,7 +65,7 @@ $(function(){
             alert("修改成功");   
         })
     })
-    
+
 })
 
 function addRow1(id, title, author,time,create_time,creator,status) {
@@ -124,14 +124,6 @@ function update(id) {
 function delet(id) {
     $.post("http://127.0.0.1:8000/items/delete/" + id, function(data, status) {
         alert("删除成功");
-        var table = document.getElementById("book_table");
-        var rows = table.rows;
-        for (var i = 0; i < rows.length; i++) {
-            if (rows[i].cells[0].textContent == id) {
-                table.deleteRow(i);
-                break;
-            }
-        }
     });
 }
 

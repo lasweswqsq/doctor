@@ -97,6 +97,13 @@ async def ps21_book_info(id:int):
     print(result)
     return result
 
+@app.post("/delete/{id}")
+async def ps21_book_info(id:int):
+    print(id)
+    cursor = conn.cursor()
+    cursor.execute("delete * from book where id=%s", id)
+    conn.commit()
+
 
 #uvicorn database:app --reload
 
