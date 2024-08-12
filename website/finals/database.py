@@ -97,7 +97,7 @@ async def ps21_book_info(id:int):
     print(result)
     return result
 
-@app.post("/delete/{id}")
+@app.post("/items/delete/{id}")
 async def ps21_book_info(id:int):
     print(id)
     cursor = conn.cursor()
