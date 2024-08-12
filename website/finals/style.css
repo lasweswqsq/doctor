@@ -10,3 +10,37 @@
   .btn:hover {
     background-color: rgb(189, 69, 185); /* 鼠标悬停时的背景颜色 */
   }
+
+  .tooltip {
+    position: relative;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    margin: 10px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+   
+  .tooltip:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -5px;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #f9f9f9 transparent transparent transparent;
+  }
+   
+  .tooltip:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -8px;
+    margin-left: -8px;
+    border-width: 8px;
+    border-style: solid;
+    border-color: #ddd transparent transparent transparent;
+  }

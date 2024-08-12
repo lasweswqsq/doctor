@@ -2,7 +2,8 @@
 import pymysql
 import datetime
 from fastapi.middleware.cors import CORSMiddleware
-
+from pathlib import Path
+import json
 
 
 conn = pymysql.connect(
@@ -104,6 +105,17 @@ async def ps21_book_info(id:int):
     cursor.execute("delete from book where id=%s", id)
     conn.commit()
 
+@app.get("/items/delete/{title}")
+async def get_book_info(title:str):
+    #创建游标
+    cursor = conn.cursor()
+    # 执行 SQL 查询语句
+    cursor.execute("SELECT * FROM book WHERE title like %s", ("%"+title+"%"))
+    result = cursor.fetchall()
+    path = Path('result.json')
+    contents = json.dumps(result)
+    path.write_text(contents)
+    return result
 
 #uvicorn database:app --reload
 

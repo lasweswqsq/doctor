@@ -67,6 +67,11 @@ $(function(){
             })
               
         })
+        $("#export_submit").on("click", function(e){
+            $.get(`http://127.0.0.1:8000/items/export/${query}`, function(data, status) {
+                alert("导出成功");
+            })
+        })
     })
 
 
@@ -126,7 +131,7 @@ function update(id) {
     
 
 function delet(id) {
-    if(confirm("Are you sure you want to proceed?")){
+    if(confirm("你确定要删除这本书吗?")){
         // 用户点击了“确定”
         console.log("User confirmed.");
         $.post("http://127.0.0.1:8000/items/delete/" + id, function(data, status) {
