@@ -62,11 +62,14 @@ $(function(){
         var author = $("#author").val();
         var time = $("#time").val();    
         $.post(`http://127.0.0.1:8000/items/update/${id}/${title}/${author}/${time}`, function(data, status) {
-            alert("修改成功");   
+                alert("修改成功");
+
+            })
+              
         })
     })
 
-})
+
 
 function addRow1(id, title, author,time,create_time,creator,status) {
     var table = document.getElementById("book_table");
@@ -120,11 +123,19 @@ function update(id) {
     location.href = "update.html?id=" + id;
 }
 
+    
 
 function delet(id) {
-    $.post("http://127.0.0.1:8000/items/delete/" + id, function(data, status) {
-        alert("删除成功");
-    });
+    if(confirm("Are you sure you want to proceed?")){
+        // 用户点击了“确定”
+        console.log("User confirmed.");
+        $.post("http://127.0.0.1:8000/items/delete/" + id, function(data, status) {
+            alert("删除成功");
+        });
+    }else {
+        // 用户点击了“取消”
+        console.log("User cancelled.");
+    }
 }
 
 
