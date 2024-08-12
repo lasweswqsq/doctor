@@ -94,6 +94,7 @@ function addRow(id, title, author,time,create_time,creator,status) {
     var cell6 = newRow.insertCell(5); // 在新行中插入第三个单元格
     var cell7 = newRow.insertCell(6);
     var cell8 = newRow.insertCell(7);
+    var cell9 = newRow.insertCell(8);
     cell1.textContent = id; // 设置单元格内容
     cell2.textContent = title;
     cell3.textContent = author;
@@ -106,6 +107,7 @@ function addRow(id, title, author,time,create_time,creator,status) {
     }else{
         cell8.innerHTML = "<button onclick='borrow(" + id + ")'>借书</button>"; // 设置单元格内容
     }
+    cell8.innerHTML = "<button onclick='borrow(" + id + ")'>修改</button>"; // 设置单元格内容;
 }
 
 

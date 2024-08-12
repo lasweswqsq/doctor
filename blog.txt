@@ -210,9 +210,12 @@ there are more and more htmls flooding into my body, which makes me feel like a 
 this time my teacher ordered me to develop a login page so that librarians can get access to the system by using the mouse to click on the page to do something
 little tip: the librarian dosen't equals the admin, in that case, the librarian has only a few rights
 Ang also, we can not grant the librarian all the access, because she could destroy the priceless data in the database deliberately
- 
 
 
+
+8/12 Monday
+Today a fresh new week started, i will further my establishment of the library management system, which is a enormous project
+firstly, asking the teacherfor help is of great importance for the unfamiliar concepts and codes
 
 
 
