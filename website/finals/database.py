@@ -2,8 +2,11 @@
 import pymysql
 import datetime
 from fastapi.middleware.cors import CORSMiddleware
-from pathlib import Path
-from fastapi.responses import FileResponse
+
+from fastapi import FastAPI
+
+import os
+
 
 conn = pymysql.connect(
     host='DTY-AI-PC',  # 主机名
@@ -14,7 +17,7 @@ conn = pymysql.connect(
 )
 
 
-from fastapi import FastAPI   
+
 
 app = FastAPI()
 
@@ -114,7 +117,13 @@ async def get_book_info(title:str):
     result=str(result)
     with open("book.txt","w",encoding="utf-8") as f:
         f.write(result)
-    return FileResponse(Path("book.txt"))
+    # 获取文件的绝对路径
+    file_path = os.path.abspath("book.txt")
+ 
+    # 转换为URL
+    file_url = 'file://' + file_path
+    return file_url
+
 
 
 #uvicorn database:app --reload
