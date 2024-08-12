@@ -105,7 +105,7 @@ async def ps21_book_info(id:int):
     cursor.execute("delete from book where id=%s", id)
     conn.commit()
 
-@app.get("/items/delete/{title}")
+@app.get("/items/export/{title}")
 async def get_book_info(title:str):
     #创建游标
     cursor = conn.cursor()
