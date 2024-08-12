@@ -3,8 +3,7 @@ import pymysql
 import datetime
 from fastapi.middleware.cors import CORSMiddleware
 from pathlib import Path
-import json
-
+from fastapi.responses import FileResponse
 
 conn = pymysql.connect(
     host='DTY-AI-PC',  # 主机名
@@ -15,7 +14,7 @@ conn = pymysql.connect(
 )
 
 
-from fastapi import FastAPI, Form   
+from fastapi import FastAPI   
 
 app = FastAPI()
 
@@ -112,9 +111,9 @@ async def get_book_info(title:str):
     # 执行 SQL 查询语句
     cursor.execute("SELECT * FROM book WHERE title like %s", ("%"+title+"%"))
     result = cursor.fetchall()
-    path = Path('export.txt')
-    path.write_text(result)
-    return result
+    result = str(result)
+    some_file_path = "export.txt"
+    return FileResponse(some_file_path)
 
 #uvicorn database:app --reload
 
