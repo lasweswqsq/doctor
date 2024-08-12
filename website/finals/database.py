@@ -111,7 +111,11 @@ async def get_book_info(title:str):
     # 执行 SQL 查询语句
     cursor.execute("SELECT * FROM book WHERE title like %s", ("%"+title+"%"))
     result = cursor.fetchall()
-    return result
+    result=str(result)
+    with open("book.txt","w",encoding="utf-8") as f:
+        f.write(result)
+    return FileResponse(Path("book.txt"))
+
 
 #uvicorn database:app --reload
 
