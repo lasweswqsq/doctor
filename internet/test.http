@@ -1,9 +1,0 @@
-POST http://localhost:8000/items/
-Content-Type: application/json
-
-{
-    "name": "abc",
-    "witdh": 1,
-    "height": 2
-    
-}
