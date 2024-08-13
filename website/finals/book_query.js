@@ -192,5 +192,7 @@ function downloadFile(url) {
 
     function delRow()
     {
-    document.getElementById('book_table').deleteRow(0)
+        if (document.getElementById('book_table').rows.length > 1) {
+            document.getElementById('book_table').deleteRow(-1)
+        }
     }
