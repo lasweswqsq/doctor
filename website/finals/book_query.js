@@ -18,10 +18,9 @@ $(function(){
         var user = $("#user_input").val();
         var password = $("#password_input").val();
         $.post("http://127.0.0.1:8000/users/" + user + "/" + password, function(data, status) {
-            alert("数据: " + data + "\n状态: " + status);
             if(data == 1){
                 var container = document.getElementById("login_form");
-                container.innerHTML = "欢迎" + user + "登录成功！";
+                container.innerHTML = "欢迎" + user + "，登录成功！";
                 //location.href = "workout.html";
                 var container = document.getElementById("buttonContainer1");
                 // 使用innerHTML添加按钮
