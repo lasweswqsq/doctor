@@ -1,10 +1,11 @@
 
+import random
 from fastapi.responses import FileResponse
 import pymysql
 import datetime
 from fastapi.middleware.cors import CORSMiddleware
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Header
 
 import os
 
@@ -34,14 +35,25 @@ app.add_middleware(CORSMiddleware,
 
 #same website name only counts the first
 @app.get("/items/{title}")
-async def get_book_info(title:str):
+async def get_book_info(title:str, token: str = Header(None)):
+    #print(token)
+    
     #创建游标
     cursor = conn.cursor()
-    # 执行 SQL 查询语句
-    cursor.execute("SELECT * FROM book WHERE title like %s", ("%"+title+"%"))
-
-    result = cursor.fetchall()
-    return result
+    time = datetime.datetime.now()
+    cursor.execute("SELECT * FROM token WHERE token=%s and expire_time>%s", (token,time))
+    resul = cursor.fetchone()
+    if resul:  
+        cursor.execute("SELECT * FROM book WHERE title like %s", ("%"+title+"%"))
+        result = cursor.fetchall()
+        return {
+            "status": 1,
+            "data": result
+        }
+    else:
+        return {
+            "status": 0
+        }
 
 
 @app.post("/items/borrow/{id}")
@@ -68,10 +80,21 @@ async def ps_book_info(user:str,password:str):
     # 执行 SQL 查询语句
     cursor.execute("SELECT * FROM user WHERE name=%s AND password=%s", (user, password))
     result = cursor.fetchall()
+    time = datetime.datetime.now()
+    time = time + datetime.timedelta(hours=2)
     if result:
-        return 1
+        key=random.randint(1,10000000)
+        cursor.execute("INSERT INTO token (token,user,expire_time) VALUES (%s,%s,%s)", (key,user,time))
+        conn.commit()
+        return {
+            "status": 1,
+            "token": key,
+            "expire_time": time
+        }
     else:
-        return 0
+        return {
+            "status": 0
+        }
     
 
 @app.post("/items/add/{title}/{author}/{time}/{creator}")

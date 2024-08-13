@@ -3,6 +3,31 @@ $(function(){
     $("#query_submit").on("click", function(e){
         delRow()
         var query = $("#query_input").val();
+        $.get({
+            url: "http://127.0.0.1:8000/items/" + query,
+            data: {key1: "value1", key2: "value2"},
+            beforeSend: xhrWithAuth,
+            success: function(data, status){
+                array = data['data'];
+                //        IP        端口号
+                //请求了"http://127.0.0.1:8000/items/" + query的地址
+                //alert("数据: " + data + "\n状态: " + status);
+                for(var i=0;i<array.length;i++){
+                    //循环遍历data数组，并将数据添加到表格中
+                    var statusDesc= array[i][6]==0?"未借出":"已借出"; //判断书籍状态，0为未借出，1为已借出
+                    addRow(array[i][0], array[i][1], array[i][2], array[i][3], array[i][4], array[i][5], statusDesc);
+                }
+            },
+            error: function(xhr, status, error){
+                alert("请求失败: " + error);
+            }
+        });
+    });
+
+
+
+
+/*
         $.get("http://127.0.0.1:8000/items/" + query,function(data,status){
             //        IP        端口号
             //请求了"http://127.0.0.1:8000/items/" + query的地址
@@ -11,16 +36,20 @@ $(function(){
                 var statusDesc= data[i][6]==0?"未借出":"已借出"; //判断书籍状态，0为未借出，1为已借出
                 addRow(data[i][0], data[i][1], data[i][2], data[i][3], data[i][4], data[i][5], statusDesc);
             }
+                */
 
-        })
-    })
+
+
     $("#user_submit").on("click", function(e){
         var user = $("#user_input").val();
         var password = $("#password_input").val();
         $.post("http://127.0.0.1:8000/users/" + user + "/" + password, function(data, status) {
-            if(data == 1){
+            var status = data['status']
+            if(status == 1){
                 var container = document.getElementById("login_form");
                 container.innerHTML = "欢迎" + user + "，登录成功！";
+                var token = data['token'];
+                localStorage.setItem("token", token);
                 //location.href = "workout.html";
                 var container = document.getElementById("buttonContainer1");
                 // 使用innerHTML添加按钮
@@ -234,4 +263,9 @@ function downloadFile(url) {
         while (document.getElementById('book_table').rows.length > 1) {
             document.getElementById('book_table').deleteRow(-1)
         }
+    }
+
+    function xhrWithAuth(xhr){
+        var token = localStorage.getItem('token')
+        xhr.setRequestHeader('token',token);
     }
