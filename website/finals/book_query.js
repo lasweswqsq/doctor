@@ -6,7 +6,6 @@ $(function(){
         $.get("http://127.0.0.1:8000/items/" + query,function(data,status){
             //        IP        端口号
             //请求了"http://127.0.0.1:8000/items/" + query的地址
-            alert("数据: " + data + "\n状态: " + status);
             for(var i=0;i<data.length;i++){
                 //循环遍历data数组，并将数据添加到表格中
                 var statusDesc= data[i][6]==0?"未借出":"已借出"; //判断书籍状态，0为未借出，1为已借出
@@ -134,6 +133,19 @@ function delet(id) {
         // 用户点击了“确定”
         console.log("User confirmed.");
         $.post("http://127.0.0.1:8000/items/delete/" + id, function(data, status) {
+            delRow()
+            var query = $("#query_input").val();
+            $.get("http://127.0.0.1:8000/items/" + query,function(data,status){
+                //        IP        端口号
+                //请求了"http://127.0.0.1:8000/items/" + query的地址
+                //alert("数据: " + data + "\n状态: " + status);
+                for(var i=0;i<data.length;i++){
+                    //循环遍历data数组，并将数据添加到表格中
+                    var statusDesc= data[i][6]==0?"未借出":"已借出"; //判断书籍状态，0为未借出，1为已借出
+                    addRow(data[i][0], data[i][1], data[i][2], data[i][3], data[i][4], data[i][5], statusDesc);
+                }
+    
+            }) 
             alert("删除成功");
         });
     }else {
@@ -145,12 +157,38 @@ function delet(id) {
 
 function borrow(id) {
     $.post("http://127.0.0.1:8000/items/borrow/" + id, function(data, status) {
+        delRow()
+        var query = $("#query_input").val();
+        $.get("http://127.0.0.1:8000/items/" + query,function(data,status){
+            //        IP        端口号
+            //请求了"http://127.0.0.1:8000/items/" + query的地址
+            //alert("数据: " + data + "\n状态: " + status);
+            for(var i=0;i<data.length;i++){
+                //循环遍历data数组，并将数据添加到表格中
+                var statusDesc= data[i][6]==0?"未借出":"已借出"; //判断书籍状态，0为未借出，1为已借出
+                addRow(data[i][0], data[i][1], data[i][2], data[i][3], data[i][4], data[i][5], statusDesc);
+            }
+
+        })
         alert("借阅成功");
     });
 }
 
 function retu(id) {
     $.post("http://127.0.0.1:8000/items/return/" + id, function(data, status) {
+        delRow()
+        var query = $("#query_input").val();
+        $.get("http://127.0.0.1:8000/items/" + query,function(data,status){
+            //        IP        端口号
+            //请求了"http://127.0.0.1:8000/items/" + query的地址
+            //alert("数据: " + data + "\n状态: " + status);
+            for(var i=0;i<data.length;i++){
+                //循环遍历data数组，并将数据添加到表格中
+                var statusDesc= data[i][6]==0?"未借出":"已借出"; //判断书籍状态，0为未借出，1为已借出
+                addRow(data[i][0], data[i][1], data[i][2], data[i][3], data[i][4], data[i][5], statusDesc);
+            }
+
+        }) 
         alert("还书成功");
     });
 }
@@ -192,7 +230,7 @@ function downloadFile(url) {
 
     function delRow()
     {
-        if (document.getElementById('book_table').rows.length > 1) {
+        while (document.getElementById('book_table').rows.length > 1) {
             document.getElementById('book_table').deleteRow(-1)
         }
     }
