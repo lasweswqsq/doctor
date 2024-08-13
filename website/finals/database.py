@@ -118,7 +118,7 @@ async def get_book_info(title:str):
     with open("d://temp//book.txt","w",encoding="utf-8") as f:
         f.write(result)
     # 获取文件的绝对路径
-    file_path = os.path.abspath("book.txt")
+    file_path = os.path.abspath("d://temp//book.txt")
     # 转换为URL
     file_url = 'file://' + file_path
     return file_url
