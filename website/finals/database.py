@@ -1,4 +1,5 @@
 
+from fastapi.responses import FileResponse
 import pymysql
 import datetime
 from fastapi.middleware.cors import CORSMiddleware
@@ -115,13 +116,12 @@ async def get_book_info(title:str):
     cursor.execute("SELECT * FROM book WHERE title like %s", ("%"+title+"%"))
     result = cursor.fetchall()
     result=str(result)
-    with open("d://temp//book.txt","w",encoding="utf-8") as f:
+    with open("book.txt","w",encoding="utf-8") as f:
         f.write(result)
-    # 获取文件的绝对路径
-    file_path = os.path.abspath("d://temp//book.txt")
-    # 转换为URL
-    file_url = 'file://' + file_path
-    return file_url
+    # image_data = open("book.txt","rb").read()
+    headers = {'Content-Disposition': 'attachment; filename="example.txt"'}
+    return FileResponse(path="book.txt", media_type="text/plain", headers=headers)
+
 
 
 
@@ -130,4 +130,9 @@ async def get_book_info(title:str):
 #@app.post("/users/{user}/{password}")
 #async def ps_book_info(user:str,password:str):
 
-
+'''
+    # 获取文件的绝对路径
+    file_path = os.path.abspath("d://temp//book.txt")
+    # 转换为URL
+    file_url = 'file://' + file_path
+'''
