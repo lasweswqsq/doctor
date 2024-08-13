@@ -8,6 +8,11 @@ $(function(){
             data: {key1: "value1", key2: "value2"},
             beforeSend: xhrWithAuth,
             success: function(data, status){
+                if (data['status'] == -2) {
+                    alert("登录过期，请重新登录");
+                    location.href = "login.html";
+                }
+                else{
                 array = data['data'];
                 //        IP        端口号
                 //请求了"http://127.0.0.1:8000/items/" + query的地址
@@ -17,6 +22,7 @@ $(function(){
                     var statusDesc= array[i][6]==0?"未借出":"已借出"; //判断书籍状态，0为未借出，1为已借出
                     addRow(array[i][0], array[i][1], array[i][2], array[i][3], array[i][4], array[i][5], statusDesc);
                 }
+            }
             },
             error: function(xhr, status, error){
                 alert("请求失败: " + error);

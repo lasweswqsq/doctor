@@ -52,7 +52,8 @@ async def get_book_info(title:str, token: str = Header(None)):
         }
     else:
         return {
-            "status": 0
+            "status": -2,
+            "message": "token expired"
         }
 
 
