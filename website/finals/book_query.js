@@ -2,7 +2,6 @@ window.alert('welcome to this library management system');
 $(function(){
     $("#query_submit").on("click", function(e){
         var query = $("#query_input").val();
-
         $.get("http://127.0.0.1:8000/items/" + query,function(data,status){
             //        IP        端口号
             //请求了"http://127.0.0.1:8000/items/" + query的地址
@@ -182,4 +181,10 @@ function downloadFile(url) {
             link.download = 'myfile.txt'; // 设置下载的文件名
             link.click(); // 模拟点击下载
         })
+    }
+
+
+    function refreshPage() {
+        // 当按钮被点击时，页面会刷新
+        location.reload();
     }
