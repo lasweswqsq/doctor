@@ -80,12 +80,23 @@ async def patch_book_info(id:int, token: str = Header(None)):
 
 
 @app.post("/items/return/{id}")
-async def fridge_book_info(id:int):
+async def fridge_book_info(id:int,token: str = Header(None)):
     cursor = conn.cursor()
-    # 执行 SQL 查询语句
-    cursor.execute("UPDATE book set status=0 where id=%s", id)
-    conn.commit()
-    return 0
+    time = datetime.datetime.now()
+    cursor.execute("SELECT * FROM token WHERE token=%s and expire_time>%s", (token,time))
+    resul = cursor.fetchone()
+    if resul:  
+        cursor.execute("UPDATE book set status=1 where id=%s", id)
+        conn.commit()
+        return {
+            "status": 1,
+        }
+    else:
+        return {
+            "status": -2,
+            "message": "token expired"
+        }
+
 
 
 @app.post("/users/{user}/{password}")

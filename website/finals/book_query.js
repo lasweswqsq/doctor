@@ -243,9 +243,23 @@ function borrow(id) {
 }
 
 function retu(id) {
-    $.post("http://127.0.0.1:8000/items/return/" + id, function(data, status) {
-        restart()
-        alert("还书成功");
+    $.post({
+        url: "http://127.0.0.1:8000/items/return/" + id,
+        data: {key1: "value1", key2: "value2"},
+        beforeSend: xhrWithAuth,
+        success: function(data, status){
+            if (data['status'] == -2) {
+                alert("登录过期，请重新登录");
+                location.href = "login.html";
+            }
+            else{
+                restart()
+                alert("还书成功");
+            }
+        },
+        error: function(xhr, status, error){
+            alert("请求失败: " + error);
+        }
     });
 }
 
