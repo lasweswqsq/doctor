@@ -1,4 +1,4 @@
-window.alert('welcome to this library management system');
+// This file is used to query books and display them in a table.
 $(function(){
     $("#query_submit").on("click", function(e){
         delRow()
@@ -79,8 +79,8 @@ $(function(){
         var author = $("#author").val();
         var time = $("#time").val();
         var creator = $("#creator").val();
-        $.get({
-            url: `http://127.0.0.1:8000/items/add/${title}/${author}/${time}/${creator}` + query,
+        $.post({
+            url: `http://127.0.0.1:8000/items/add/${title}/${author}/${time}/${creator}`,
             data: {key1: "value1", key2: "value2"},
             beforeSend: xhrWithAuth,
             success: function(data, status){
@@ -109,15 +109,29 @@ $(function(){
         const id = params.get('id');//输出:'value1constparam1
         var title = $("#title").val();
         var author = $("#author").val();
-        var time = $("#time").val();    
-        $.post(`http://127.0.0.1:8000/items/update/${id}/${title}/${author}/${time}`, function(data, status) {
-                alert("修改成功");
-
-            })
+        var time = $("#time").val();  
+        $.post({
+            url: `http://127.0.0.1:8000/items/update/${id}/${title}/${author}/${time}`,
+            data: {key1: "value1", key2: "value2"},
+            beforeSend: xhrWithAuth,
+            success: function(data, status){
+                if (data['status'] == -2) {
+                    alert("登录过期，请重新登录");
+                    location.href = "login.html";
+                }
+                else{
+                    alert("修改成功");
+                }
+            },
+            error: function(xhr, status, error){
+                alert("请求失败: " + error);
+            }
+        });  
               
         })
         $("#export_submit").on("click", function(e){
             var query = $("#query_input").val();
+            
             window.open("http://127.0.0.1:8000/items/export/" + query, "_blank")
         })
     })
@@ -182,21 +196,23 @@ function delet(id) {
     if(confirm("你确定要删除这本书吗?")){
         // 用户点击了“确定”
         console.log("User confirmed.");
-        $.post("http://127.0.0.1:8000/items/delete/" + id, function(data, status) {
-            delRow()
-            var query = $("#query_input").val();
-            $.get("http://127.0.0.1:8000/items/" + query,function(data,status){
-                //        IP        端口号
-                //请求了"http://127.0.0.1:8000/items/" + query的地址
-                //alert("数据: " + data + "\n状态: " + status);
-                for(var i=0;i<data.length;i++){
-                    //循环遍历data数组，并将数据添加到表格中
-                    var statusDesc= data[i][6]==0?"未借出":"已借出"; //判断书籍状态，0为未借出，1为已借出
-                    addRow(data[i][0], data[i][1], data[i][2], data[i][3], data[i][4], data[i][5], statusDesc);
+        $.post({
+            url: "http://127.0.0.1:8000/items/delete/" + id,
+            data: {key1: "value1", key2: "value2"},
+            beforeSend: xhrWithAuth,
+            success: function(data, status){
+                if (data['status'] == -2) {
+                    alert("登录过期，请重新登录");
+                    location.href = "login.html";
                 }
-    
-            }) 
-            alert("删除成功");
+                else{
+                    restart()
+                    alert("删除成功");
+                }
+            },
+            error: function(xhr, status, error){
+                alert("请求失败: " + error);
+            }
         });
     }else {
         // 用户点击了“取消”
@@ -207,43 +223,19 @@ function delet(id) {
 
 function borrow(id) {
     $.post("http://127.0.0.1:8000/items/borrow/" + id, function(data, status) {
-        delRow()
-        var query = $("#query_input").val();
-        $.get("http://127.0.0.1:8000/items/" + query,function(data,status){
-            //        IP        端口号
-            //请求了"http://127.0.0.1:8000/items/" + query的地址
-            //alert("数据: " + data + "\n状态: " + status);
-            for(var i=0;i<data.length;i++){
-                //循环遍历data数组，并将数据添加到表格中
-                var statusDesc= data[i][6]==0?"未借出":"已借出"; //判断书籍状态，0为未借出，1为已借出
-                addRow(data[i][0], data[i][1], data[i][2], data[i][3], data[i][4], data[i][5], statusDesc);
-            }
-
-        })
+        restart()
         alert("借阅成功");
     });
 }
 
 function retu(id) {
     $.post("http://127.0.0.1:8000/items/return/" + id, function(data, status) {
-        delRow()
-        var query = $("#query_input").val();
-        $.get("http://127.0.0.1:8000/items/" + query,function(data,status){
-            //        IP        端口号
-            //请求了"http://127.0.0.1:8000/items/" + query的地址
-            //alert("数据: " + data + "\n状态: " + status);
-            for(var i=0;i<data.length;i++){
-                //循环遍历data数组，并将数据添加到表格中
-                var statusDesc= data[i][6]==0?"未借出":"已借出"; //判断书籍状态，0为未借出，1为已借出
-                addRow(data[i][0], data[i][1], data[i][2], data[i][3], data[i][4], data[i][5], statusDesc);
-            }
-
-        }) 
+        restart()
         alert("还书成功");
     });
 }
 
-
+/*
 function downloadFile(url) {
     fetch(url)
         .then(response => {
@@ -277,7 +269,7 @@ function downloadFile(url) {
         // 当按钮被点击时，页面会刷新
         location.reload();
     }
-
+*/
     function delRow()
     {
         while (document.getElementById('book_table').rows.length > 1) {
@@ -290,8 +282,37 @@ function downloadFile(url) {
         xhr.setRequestHeader('token',token);
     }
 
+    function restart(){
+        delRow()
+        var query = $("#query_input").val();
+        $.get({
+            url: "http://127.0.0.1:8000/items/" + query,
+            data: {key1: "value1", key2: "value2"},
+            beforeSend: xhrWithAuth,
+            success: function(data, status){
+                if (data['status'] == -2) {
+                    alert("登录过期，请重新登录");
+                    location.href = "login.html";
+                }
+                else{
+                array = data['data'];
+                //        IP        端口号
+                //请求了"http://127.0.0.1:8000/items/" + query的地址
+                //alert("数据: " + data + "\n状态: " + status);
+                for(var i=0;i<array.length;i++){
+                    //循环遍历data数组，并将数据添加到表格中
+                    var statusDesc= array[i][6]==0?"未借出":"已借出"; //判断书籍状态，0为未借出，1为已借出
+                    addRow(array[i][0], array[i][1], array[i][2], array[i][3], array[i][4], array[i][5], statusDesc);
+                }
+            }
+            },
+            error: function(xhr, status, error){
+                alert("请求失败: " + error);
+            }
+        });
+    }
+
     /*
-    $.post
     $.get({
             url: "http://127.0.0.1:8000/items/" + query,
             data: {key1: "value1", key2: "value2"},
@@ -304,6 +325,22 @@ function downloadFile(url) {
                 else{
                 }
             }
+            },
+            error: function(xhr, status, error){
+                alert("请求失败: " + error);
+            }
+        });
+    $.post({
+            url: "http://127.0.0.1:8000/items/" + query,
+            data: {key1: "value1", key2: "value2"},
+            beforeSend: xhrWithAuth,
+            success: function(data, status){
+                if (data['status'] == -2) {
+                    alert("登录过期，请重新登录");
+                    location.href = "login.html";
+                }
+                else{
+                }
             },
             error: function(xhr, status, error){
                 alert("请求失败: " + error);

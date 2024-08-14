@@ -4,6 +4,7 @@ from fastapi.responses import FileResponse
 import pymysql
 import datetime
 from fastapi.middleware.cors import CORSMiddleware
+import uuid
 
 from fastapi import FastAPI, Header
 
@@ -84,7 +85,7 @@ async def ps_book_info(user:str,password:str):
     time = datetime.datetime.now()
     time = time + datetime.timedelta(hours=2)
     if result:
-        key=random.randint(1,10000000)
+        key= str(uuid.uuid4())
         cursor.execute("INSERT INTO token (token,user,expire_time) VALUES (%s,%s,%s)", (key,user,time))
         conn.commit()
         return {
@@ -99,10 +100,11 @@ async def ps_book_info(user:str,password:str):
     
 
 @app.post("/items/add/{title}/{author}/{time}/{creator}")
-async def ps_book_info(title:str,author:str,time:str,creator:str):
+async def ps_book_info(title:str,author:str,time:str,creator:str,token: str = Header(None)):
     cursor = conn.cursor()
     create_time = datetime.datetime.now()
     # 执行 SQL 查询语句
+    time = datetime.datetime.now()
     cursor.execute("SELECT * FROM token WHERE token=%s and expire_time>%s", (token,time))
     resul = cursor.fetchone()
     if resul:  
@@ -119,13 +121,24 @@ async def ps_book_info(title:str,author:str,time:str,creator:str):
 
 
 @app.post("/items/update/{id}/{title}/{author}/{time}")
-async def ps2_book_info(id:int,title:str,author:str,time:str):
+async def ps2_book_info(id:int,title:str,author:str,time:str,token: str = Header(None)):
     cursor = conn.cursor()
     create_time = datetime.datetime.now()
-    # 执行 SQL 查询语句
-    cursor.execute("UPDATE book SET title=%s,author=%s,time=%s,create_time=%s WHERE id=%s", (title,author,time,create_time,id))
-    conn.commit()
-    return 0
+    time = datetime.datetime.now()
+    cursor.execute("SELECT * FROM token WHERE token=%s and expire_time>%s", (token,time))
+    resul = cursor.fetchone()
+    if resul:  
+        cursor.execute("UPDATE book SET title=%s,author=%s,time=%s,create_time=%s WHERE id=%s", (title,author,time,create_time,id))
+        conn.commit()
+        return {
+            "status": 1,
+        }
+    else:
+        return {
+            "status": -2,
+            "message": "token expired"
+        }
+
 
 @app.get("/item/{id}")
 async def ps21_book_info(id:int):
@@ -137,11 +150,25 @@ async def ps21_book_info(id:int):
     return result
 
 @app.post("/items/delete/{id}")
-async def ps21_book_info(id:int):
+async def ps21_book_info(id:int,token: str = Header(None)):
     print(id)
     cursor = conn.cursor()
     cursor.execute("delete from book where id=%s", id)
-    conn.commit()
+    time = datetime.datetime.now()
+    cursor.execute("SELECT * FROM token WHERE token=%s and expire_time>%s", (token,time))
+    resul = cursor.fetchone()
+    if resul:  
+        cursor.execute("delete from book where id=%s", id)
+        conn.commit()
+        return {
+            "status": 1,
+        }
+    else:
+        return {
+            "status": -2,
+            "message": "token expired"
+        }
+
 
 @app.get("/items/export/{title}")
 async def get_book_info(title:str):
@@ -161,6 +188,7 @@ async def get_book_info(title:str):
 
 
 #uvicorn database:app --reload
+#cd website\finals
 
 #@app.post("/users/{user}/{password}")
 #async def ps_book_info(user:str,password:str):
