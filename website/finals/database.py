@@ -103,9 +103,20 @@ async def ps_book_info(title:str,author:str,time:str,creator:str):
     cursor = conn.cursor()
     create_time = datetime.datetime.now()
     # 执行 SQL 查询语句
-    cursor.execute("INSERT INTO book (title,author,time,create_time,creator,status) VALUES (%s,%s,%s,%s,%s,0)", (title,author,time,create_time,creator))
-    conn.commit()
-    return 0
+    cursor.execute("SELECT * FROM token WHERE token=%s and expire_time>%s", (token,time))
+    resul = cursor.fetchone()
+    if resul:  
+        cursor.execute("INSERT INTO book (title,author,time,create_time,creator,status) VALUES (%s,%s,%s,%s,%s,0)", (title,author,time,create_time,creator))
+        conn.commit()
+        return {
+            "status": 1,
+        }
+    else:
+        return {
+            "status": -2,
+            "message": "token expired"
+        }
+
 
 @app.post("/items/update/{id}/{title}/{author}/{time}")
 async def ps2_book_info(id:int,title:str,author:str,time:str):

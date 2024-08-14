@@ -79,10 +79,24 @@ $(function(){
         var author = $("#author").val();
         var time = $("#time").val();
         var creator = $("#creator").val();
-        $.post(`http://127.0.0.1:8000/items/add/${title}/${author}/${time}/${creator}`, function(data, status) {
-            alert("提交成功");
-            addRow1("——", title, author, time, "now", creator, "未借出");
-        })
+        $.get({
+            url: `http://127.0.0.1:8000/items/add/${title}/${author}/${time}/${creator}` + query,
+            data: {key1: "value1", key2: "value2"},
+            beforeSend: xhrWithAuth,
+            success: function(data, status){
+                if (data['status'] == -2) {
+                    alert("登录过期，请重新登录");
+                    location.href = "login.html";
+                }
+                else{
+                    alert("提交成功");
+                    addRow1("——", title, author, time, "now", creator, "未借出");
+                }
+            },
+            error: function(xhr, status, error){
+                alert("请求失败: " + error);
+            }
+        });
     })
     $("#book_update").on("click", function(e){
         //假设 URL 是:https://example.com/?param1=value1&param2=value2
@@ -275,3 +289,25 @@ function downloadFile(url) {
         var token = localStorage.getItem('token')
         xhr.setRequestHeader('token',token);
     }
+
+    /*
+    $.post
+    $.get({
+            url: "http://127.0.0.1:8000/items/" + query,
+            data: {key1: "value1", key2: "value2"},
+            beforeSend: xhrWithAuth,
+            success: function(data, status){
+                if (data['status'] == -2) {
+                    alert("登录过期，请重新登录");
+                    location.href = "login.html";
+                }
+                else{
+                }
+            }
+            },
+            error: function(xhr, status, error){
+                alert("请求失败: " + error);
+            }
+        });
+
+    */
