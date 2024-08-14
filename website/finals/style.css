@@ -47,16 +47,19 @@
 
   table {
     border-collapse: separate;
-    text-align: middle;
+    font:100 18px/1.2 "楷体", Helvetica, Arial, sans-serif;
+    width: 100%;
+    text-align: center;
+    margin: 30px auto;
     border-spacing: 0;
     border-left: 1px solid #505050;
-    margin: 2px 0 20px 0;
+    border-top: 1px solid #505050;
   }
    
   th, td {
     border-right: 1px solid #C1DAD7;
     border-top: 1px solid #C1DAD7;
-    font-size: 12px;
+    font-size: 18px;
     color: #000;
     padding: 5px;
     text-align: center;
@@ -68,29 +71,11 @@
   }
    
   th {
-    background-color: #a148ba;
+    background-color: #c3ebea;
     font-weight: bold;
   }
    
-  td:first-child, th:first-child {
-    border-left: none;
-  }
-   
-  th:first-child {
-    border-top-left-radius: 5px;
-  }
-   
-  th:last-child {
-    border-top-right-radius: 5px;
-  }
-   
-  td:last-child {
-    border-bottom-right-radius: 5px;
-  }
-   
-  td:first-child {
-    border-bottom-left-radius: 5px;
-  }
+
 
   
   
