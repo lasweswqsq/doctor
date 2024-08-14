@@ -5,3 +5,5 @@ fig, ax=plt.pyplot.subplots()
 ax.plot(squares)
 
 plt.show()
+
+#cd c:\Users\Sunny\doctor\basics practice\visualize
