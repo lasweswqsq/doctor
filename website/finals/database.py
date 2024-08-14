@@ -211,7 +211,7 @@ async def get_book_info(title:str):
 async def ps23_book_info(user:str,password:str):
     cursor = conn.cursor()
     # 执行 SQL 查询语句
-    cursor.execute("SELECT * FROM user WHERE name=%s AND password=%s", (user, password))
+    cursor.execute("SELECT * FROM user WHERE name=%s", (user,))
     result = cursor.fetchall()
     if result:
         return {

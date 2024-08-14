@@ -43,7 +43,7 @@ $(function(){
                 alert("注册成功");
                 location.href = "login.html";
             }else{
-                alert("用户名已存在");
+                alert("用户已存在");
             }
         })
 
