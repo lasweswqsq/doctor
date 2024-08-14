@@ -213,8 +213,6 @@ async def ps23_book_info(user:str,password:str):
     # 执行 SQL 查询语句
     cursor.execute("SELECT * FROM user WHERE name=%s AND password=%s", (user, password))
     result = cursor.fetchall()
-    time = datetime.datetime.now()
-    time = time + datetime.timedelta(hours=2)
     if result:
         return {
             "status": -1,
