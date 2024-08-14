@@ -207,6 +207,24 @@ async def get_book_info(title:str):
     headers = {'Content-Disposition': 'attachment; filename="example.txt"'}
     return FileResponse(path="book.txt", media_type="text/plain", headers=headers)
 
+@app.post("/new_user/{user}/{password}")
+async def ps23_book_info(user:str,password:str):
+    cursor = conn.cursor()
+    # 执行 SQL 查询语句
+    cursor.execute("SELECT * FROM user WHERE name=%s AND password=%s", (user, password))
+    result = cursor.fetchall()
+    time = datetime.datetime.now()
+    time = time + datetime.timedelta(hours=2)
+    if result:
+        return {
+            "status": -1,
+        }
+    else:
+        cursor.execute("INSERT INTO user (name,password) VALUES (%s,%s)", (user,password))
+        conn.commit()
+        return {
+            "status": 1,
+        }
 
 
 

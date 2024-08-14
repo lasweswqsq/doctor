@@ -29,6 +29,25 @@ $(function(){
             }
         });
     });
+    $("#new_user_submit").on("click", function(e){
+        var user = $("#user_input1").val();
+        var password1 = $("#password_input1").val();
+        var password2 = $("#password_input2").val();
+        if(password1 != password2){
+            alert("两次输入的密码不一致");
+            return;
+        }
+        $.post("http://127.0.0.1:8000/new_user/" + user + "/" + password1, function(data, status) {
+            var status = data['status']
+            if(status == 1){
+                alert("注册成功");
+                location.href = "login.html";
+            }else{
+                alert("用户名已存在");
+            }
+        })
+
+    });
 
 
 
