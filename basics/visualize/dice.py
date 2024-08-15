@@ -9,13 +9,13 @@ die_2 = Die(8)
 
 # 掷几次骰子并将结果存储在一个列表中
 results = []
-for roll_num in range(50_000):
-    result = die_1.roll_num() + die_2.roll_num()
+for roll_num in range(5_000):
+    result = die_1.roll_num() * die_2.roll_num()
     results.append(result)
 
 # 分析结果
 frequencies = []
-max_result = die_1.sides + die_2.sides
+max_result = die_1.sides * die_2.sides
 for value in range(2, max_result + 1):
     frequency = results.count(value)
     frequencies.append(frequency)
@@ -27,7 +27,7 @@ data = [Bar(x=x_values, y=frequencies)]
 x_axis_config = {'title': '结果', 'dtick': 1} # dtick这项设置指定了x轴显示的刻度间距，'dtick':1让Plotly显示每个刻度值。
 y_axis_config = {'title': '结果的频率'}
 my_layout = Layout(title='掷一个D6和一个D10 50000次的结果', xaxis=x_axis_config, yaxis=y_axis_config)
-offline.plot({'data': data, 'layout': my_layout}, filename='d6_d10.html')
+offline.plot({'data': data, 'layout': my_layout}, filename='d6_d10.html' + str(frequencies) + '.html')
 
-
-fig.write_html('d6_d10.html')
+# 输出结果
+print(frequencies)
