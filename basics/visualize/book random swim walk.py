@@ -1,5 +1,8 @@
 from random import choice
-def port()
+
+
+
+
 class RandomWalk:
     def __init__(self, num_points=5000):
 
