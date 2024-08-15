@@ -1,4 +1,4 @@
-from random import random
+from random import randint
 
 
 class Die:
@@ -6,7 +6,7 @@ class Die:
         self.sides = sides
 
     def roll_num(self):
-        return random.randint(1, self.sides)     # random.randint(a, b) returns a random integer between a and b (inclusive)    
+        return randint(1, self.sides)     # random.randint(a, b) returns a random integer between a and b (inclusive)    
 
 
 
