@@ -241,24 +241,38 @@ function delet(id) {
 
 
 function borrow(id) {
-    $.post({
-        url: "http://127.0.0.1:8000/items/borrow/" + id,
-        data: {key1: "value1", key2: "value2"},
-        beforeSend: xhrWithAuth,
-        success: function(data, status){
-            if (data['status'] == -2) {
-                alert("登录过期，请重新登录");
-                location.href = "login.html";
-            }
-            else{
-                restart()
-                alert("借阅成功");
-            }
-        },
-        error: function(xhr, status, error){
-            alert("请求失败: " + error);
+    document.getElementById('myForm').style.display = 'block';
+    var name = $("#name").val();
+        var number = $("#number").val();
+
+        if(name == null || number == null){
+            alert("输入不能为空");
+            return;
         }
-    });
+        else if(name == "" || number == ""){
+            alert("输入不能为空");
+            return;
+        }
+        else{
+            $.post({
+                url: "http://127.0.0.1:8000/items/borrow/" + id + "/" + name + "/" + number,
+                data: {key1: "value1", key2: "value2", name: name, number: number},
+                beforeSend: xhrWithAuth,
+                success: function(data, status){
+                    if (data['status'] == -2) {
+                        alert("登录过期，请重新登录");
+                        location.href = "login.html";
+                    }
+                    else{
+                        restart()
+                        alert("借阅成功");
+                    }
+                },
+                error: function(xhr, status, error){
+                    alert("请求失败: " + error);
+                }
+            });
+        }
 }
 
 function retu(id) {
@@ -395,3 +409,20 @@ function downloadFile(url) {
         });
 
     */
+
+function popupWithInput() {
+    var userInput = prompt("请输入您的想法:", "");
+    if (userInput != null) {
+        alert("谢谢您的反馈：" + userInput);
+    }
+}
+
+
+
+function openForm() {
+    document.getElementById('myForm').style.display = 'block';
+}
+           
+function closeForm() {
+    document.getElementById('myForm').style.display = 'none';
+}

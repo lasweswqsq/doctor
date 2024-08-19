@@ -58,8 +58,8 @@ async def get_book_info(title:str, token: str = Header(None)):
         }
 
 
-@app.post("/items/borrow/{id}")
-async def patch_book_info(id:int, token: str = Header(None)):
+@app.post("/items/borrow/{id}/{name}/{phone_number}")
+async def patch_book_info(id:int,name:str,phone_number:str,token: str = Header(None)):
     cursor = conn.cursor()
     # 执行 SQL 查询语句
     print(id)
@@ -68,6 +68,8 @@ async def patch_book_info(id:int, token: str = Header(None)):
     resul = cursor.fetchone()
     if resul:  
         cursor.execute("UPDATE book set status=1 where id=%s", id)
+        conn.commit()
+        cursor.execute("INSERT INTO borrow_record (book_id,name,phone_number,borrow_time) VALUES (%s,%s,%s,%s)", (id,name,phone_number,time))
         conn.commit()
         return {
             "status": 1,
@@ -79,8 +81,8 @@ async def patch_book_info(id:int, token: str = Header(None)):
         }
 
 
-@app.post("/items/return/{id}")
-async def fridge_book_info(id:int,token: str = Header(None)):
+@app.post("/items/return/{id}/{name}/{phone_number}")
+async def fridge_book_info(id:int,name:str,phone_number:str,token: str = Header(None)):
     cursor = conn.cursor()
     time = datetime.datetime.now()
     cursor.execute("SELECT * FROM token WHERE token=%s and expire_time>%s", (token,time))
