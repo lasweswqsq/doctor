@@ -87,16 +87,16 @@ async def fridge_book_info(id:int,token: str = Header(None)):
     time = datetime.datetime.now()
     cursor.execute("SELECT * FROM token WHERE token=%s and expire_time>%s", (token,time))
     resul = cursor.fetchone()
-    delta = time - datetime.timedelta(seconds=30)
+    delta = time - datetime.timedelta(days=7)
     resul1 = cursor.execute("SELECT * FROM borrow_record where book_id=%s and return_time is null and borrow_time<%s", (id,delta))
     if resul and resul1:  
+        cursor.execute("SELECT * FROM borrow_record where book_id=%s and return_time is null", (id,))
+        name1 = cursor.fetchone()
+        name = name1[2]
         cursor.execute("UPDATE book set status=0 where id=%s", id)
         conn.commit()
         cursor.execute("UPDATE borrow_record set return_time=%s where book_id=%s and return_time is null", (time,id))
         conn.commit()
-        cursor.execute("SELECT name FROM borrow_record where book_id=%s and return_time is null", (id,))
-        name = cursor.fetchone()[0]
-        
         return {
             "status": -1,
             "message": f"尊敬的用户{name}，您未在七天内归还书籍，需要付费"
