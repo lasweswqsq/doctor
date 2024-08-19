@@ -226,6 +226,48 @@ async def get_book_info(title:str):
     headers = {'Content-Disposition': 'attachment; filename="example.txt"'}
     return FileResponse(path="book.txt", media_type="text/plain", headers=headers)
 
+@app.get("/items/b/borrow")
+async def get_book_info():
+    #创建游标
+    import numpy as np
+    import pymysql
+    import pprint as pp
+    from plotly.graph_objs import Bar, Layout
+    from plotly import offline
+
+
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT book_id FROM borrow_record")
+
+    result = cursor.fetchall()
+    dic={}
+    for row in result:
+        book_id = row[0]
+        if book_id in dic:
+            dic[book_id] += 1
+        else:
+            dic[book_id] = 1
+
+    x = sorted(dic.items(), key=lambda x: x[1], reverse=True)
+    categories = [i[0] for i in x]
+    z = [i[1] for i in x]
+
+    import matplotlib.pyplot as plt
+
+    bar_width = 0.35
+    index = np.arange(len(categories))
+    plt.bar(index, z, bar_width, alpha=0.8, color='orange')
+    plt.xlabel('Book ID')
+    plt.ylabel('Number of Borrowing')
+    plt.title('Number of Borrowing of Each Book')
+    plt.xticks(index + bar_width / 2 - 0.15, categories)
+
+    #plt.show()
+    plt.savefig('bar_chart.png')
+    headers = {'Content-Disposition': 'attachment; filename="bar_chart.png"'}
+    return FileResponse(path="bar_chart.png", media_type="png", headers=headers)
+
 @app.post("/new_user/{user}/{password}")
 async def ps23_book_info(user:str,password:str):
     cursor = conn.cursor()

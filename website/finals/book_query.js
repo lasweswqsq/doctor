@@ -82,12 +82,18 @@ $(function(){
                 var container = document.getElementById("buttonContainer2");
                 // 使用innerHTML添加按钮
                 container.innerHTML = '<button class="btn" id="insert_button">录入图书</button>';
+                var container = document.getElementById("buttonContainer4");
+                // 使用innerHTML添加按钮
+                container.innerHTML = '<button class="btn" id="borrow_button">借阅图书情况</button>';
                 $("#workout_button").on("click", function(e){
                     location.href = "workout.html";
                 })
                 $("#insert_button").on("click", function(e){
                     location.href = "insert.html";
-                })             
+                })
+                $("#borrow_button").on("click", function(e){
+                    window.open("http://127.0.0.1:8000/items/b/borrow")
+                })
             }else{
                 alert("用户名或密码错误");
             }
