@@ -259,6 +259,7 @@ async def get_book_info():
     plt.title('Number of Borrowing of Each Book')
     plt.xticks(index + bar_width / 2 - 0.15, categories)
     plt.xticks(rotation=45)  
+    plt.tight_layout()
     #plt.show() # type: ignore
     plt.savefig('bar_chart.png')
     #headers = {'Content-Disposition': 'attachment; filename="bar_chart.png"'}
