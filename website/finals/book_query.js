@@ -241,9 +241,8 @@ function delet(id) {
 
 
 function borrow(id) {
-    document.getElementById('myForm').style.display = 'block';
-    var name = $("#name").val();
-        var number = $("#number").val();
+    var name = prompt("请输入姓名","");
+    var number = prompt("请输入电话号码:","");
 
         if(name == null || number == null){
             alert("输入不能为空");
@@ -284,6 +283,10 @@ function retu(id) {
             if (data['status'] == -2) {
                 alert("登录过期，请重新登录");
                 location.href = "login.html";
+            }
+            else if(data['status'] == -1){
+                alert(data['message']);
+                restart()
             }
             else{
                 restart()
@@ -426,3 +429,4 @@ function openForm() {
 function closeForm() {
     document.getElementById('myForm').style.display = 'none';
 }
+

@@ -81,17 +81,34 @@ async def patch_book_info(id:int,name:str,phone_number:str,token: str = Header(N
         }
 
 
-@app.post("/items/return/{id}/{name}/{phone_number}")
-async def fridge_book_info(id:int,name:str,phone_number:str,token: str = Header(None)):
+@app.post("/items/return/{id}")
+async def fridge_book_info(id:int,token: str = Header(None)):
     cursor = conn.cursor()
     time = datetime.datetime.now()
     cursor.execute("SELECT * FROM token WHERE token=%s and expire_time>%s", (token,time))
     resul = cursor.fetchone()
-    if resul:  
+    delta = time - datetime.timedelta(seconds=30)
+    resul1 = cursor.execute("SELECT * FROM borrow_record where book_id=%s and return_time is null and borrow_time<%s", (id,delta))
+    if resul and resul1:  
         cursor.execute("UPDATE book set status=0 where id=%s", id)
+        conn.commit()
+        cursor.execute("UPDATE borrow_record set return_time=%s where book_id=%s and return_time is null", (time,id))
+        conn.commit()
+        cursor.execute("SELECT name FROM borrow_record where book_id=%s and return_time is null", (id,))
+        name = cursor.fetchone()[0]
+        
+        return {
+            "status": -1,
+            "message": f"尊敬的用户{name}，您未在七天内归还书籍，需要付费"
+        }
+    elif resul and not resul1:
+        cursor.execute("UPDATE book set status=0 where id=%s", id)
+        conn.commit()
+        cursor.execute("UPDATE borrow_record set return_time=%s where book_id=%s and return_time is null", (time,id))
         conn.commit()
         return {
             "status": 1,
+            "message": "book returned successfully"
         }
     else:
         return {
