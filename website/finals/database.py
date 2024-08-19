@@ -230,16 +230,8 @@ async def get_book_info(title:str):
 async def get_book_info():
     #创建游标
     import numpy as np
-    import pymysql
-    import pprint as pp
-    from plotly.graph_objs import Bar, Layout
-    from plotly import offline
-
-
     cursor = conn.cursor()
-
     cursor.execute("SELECT book_id FROM borrow_record")
-
     result = cursor.fetchall()
     dic={}
     for row in result:
@@ -248,25 +240,29 @@ async def get_book_info():
             dic[book_id] += 1
         else:
             dic[book_id] = 1
-
     x = sorted(dic.items(), key=lambda x: x[1], reverse=True)
-    categories = [i[0] for i in x]
+    categories1 = [i[0] for i in x]
+    categories = []
+    for i in categories1:
+        cursor.execute("SELECT title FROM book WHERE id=%s", i)
+        title = cursor.fetchone()[0]
+        categories.append(title)
     z = [i[1] for i in x]
-
     import matplotlib.pyplot as plt
-
     bar_width = 0.35
     index = np.arange(len(categories))
     plt.bar(index, z, bar_width, alpha=0.8, color='orange')
-    plt.xlabel('Book ID')
+    plt.rcParams['font.sans-serif']=['SimHei'] #设置字体为黑体
+    plt.rcParams['axes.unicode_minus']= False #解决坐标轴负号显示问题
+    plt.xlabel('Book Title')
     plt.ylabel('Number of Borrowing')
     plt.title('Number of Borrowing of Each Book')
     plt.xticks(index + bar_width / 2 - 0.15, categories)
-
-    #plt.show()
+    plt.xticks(rotation=45)  
+    #plt.show() # type: ignore
     plt.savefig('bar_chart.png')
-    headers = {'Content-Disposition': 'attachment; filename="bar_chart.png"'}
-    return FileResponse(path="bar_chart.png", media_type="png", headers=headers)
+    #headers = {'Content-Disposition': 'attachment; filename="bar_chart.png"'}
+    return FileResponse(path="bar_chart.png", media_type="image/png")
 
 @app.post("/new_user/{user}/{password}")
 async def ps23_book_info(user:str,password:str):

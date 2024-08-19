@@ -92,7 +92,8 @@ $(function(){
                     location.href = "insert.html";
                 })
                 $("#borrow_button").on("click", function(e){
-                    window.open("http://127.0.0.1:8000/items/b/borrow")
+                    location.href = "borrow.html";
+                    //window.open("http://127.0.0.1:8000/items/b/borrow")
                 })
             }else{
                 alert("用户名或密码错误");
