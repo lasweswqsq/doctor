@@ -1,4 +1,5 @@
 {
     "editor.accessibilityPageSize": 15,
-    "editor.fontSize": 22
+    "editor.fontSize": 22,
+    "livePreview.defaultPreviewPath": "/website/rubbish/whatthe.html"
 }

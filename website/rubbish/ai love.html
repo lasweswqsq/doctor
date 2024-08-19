@@ -1,0 +1,40 @@
+<!-- 引入按钮，‌用于打开模态框 -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> Open Modal </button>
+
+<!-- 模态框的容器 -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- 模态框的对话框容器 -->
+    <div class="modal-dialog" role="document">
+        <!-- 模态框的内容容器 -->
+        <div class="modal-content">
+            <!-- 模态框的头部 -->
+            <div class="modal-header">
+                <!-- 模态框的标题 -->
+                <h5 class="modal-title" id="exampleModalLabel">Form Modal</h5>
+                <!-- 关闭按钮 -->
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!-- 模态框的主体部分 -->
+            <div class="modal-body">
+                <!-- 表单开始 -->
+                <form id="modalForm">
+                    <!-- 姓名输入框 -->
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" required>
+                    </div>
+                    <!-- 邮箱输入框 -->
+                    <div class="form-group">
+                        <label for="email">Email address</label>
+                        <input type="email" class="form-control" id="email" required>
+                    </div>
+                    <!-- 提交按钮 -->
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+                <!-- 表单结束 -->
+            </div>
+        </div>
+    </div>
+</div>
