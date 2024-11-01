@@ -1,0 +1,18 @@
+<?php
+            $conn=mysqli_connect("localhost","heima","1234","book");
+            if(!$conn){
+                die("连接失败: ".mysqli_connect_error());
+            }
+            sql="SELECT * FROM book WHERE title LIKE '%".$query."%'";
+            $result=mysqli_query($conn,$sql);
+
+            echo "<table>
+            echo "<tr><th>id</th><<th>title</th><th>author</th><th>time/th><th>出版社</th><th>create_time</th><th>creator</th></tr>"    
+            while($row=mysqli_fetch_array($result)){
+                echo "<tr><td>".$row['id']."</td><td>".$row['title']."</td><td>".$row['author']."</td><td>".$row['time']."</td><td>".$row['publisher']."</td><td>".$row['create_time']."</td><td>".$row['creator']."</td></tr>";
+
+            }
+
+            echo "</table>";
+            mysqli_close($conn);
+        ?>

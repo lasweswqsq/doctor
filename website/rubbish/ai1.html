@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Database Connection Example</title>
+</head>
+<body>
+  <h1>Database Connection Example</h1>
+  <script>
+    fetch('http://localhost:3000/api/data')
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        // 处理数据库返回的数据
+      })
+      .catch(error => console.error('Error:', error));
+  </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Database Query Example</title>
+</head>
+<body>
+    <h1>Database Query Example</h1>
+    <button id="queryBtn">Query Database</button>
+    <script>
+        document.getElementById('queryBtn').addEventListener('click', function() {
+            fetch('/query-database')
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    // 处理数据库查询结果
+                })
+                .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>

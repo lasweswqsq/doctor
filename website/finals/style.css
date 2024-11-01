@@ -1,0 +1,103 @@
+.btn {
+    padding: 10px 20px; /* 设置内边距 */
+    border: none; /* 去除边框 */
+    border-radius: 20px; /* 设置边框圆角 */
+    cursor: pointer; /* 鼠标悬停时显示指针 */
+    background-color:rgba(142, 69, 231, 0.694); /* 设置背景颜色 */
+    color: white; /* 设置字体颜色 */
+  }
+  
+  .btn:hover {
+    background-color: rgb(189, 69, 185); /* 鼠标悬停时的背景颜色 */
+  }
+
+  .tooltip {
+    position: relative;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    margin: 10px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+   
+  .tooltip:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -5px;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #f9f9f9 transparent transparent transparent;
+  }
+   
+  .tooltip:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -8px;
+    margin-left: -8px;
+    border-width: 8px;
+    border-style: solid;
+    border-color: #ddd transparent transparent transparent;
+  }
+
+  table {
+    border-collapse: separate;
+    font:100 18px/1.2 "楷体", Helvetica, Arial, sans-serif;
+    width: 100%;
+    text-align: center;
+    margin: 30px auto;
+    border-spacing: 0;
+    border-left: 1px solid #505050;
+    border-top: 1px solid #505050;
+  }
+   
+  th, td {
+    border-right: 1px solid #C1DAD7;
+    border-top: 1px solid #C1DAD7;
+    font-size: 18px;
+    color: #000;
+    padding: 5px;
+    text-align: center;
+    vertical-align: top;
+    font-weight: normal;
+    line-height: 18px;
+    border-bottom: 1px solid #C1DAD7;
+    background-color: #fff;
+  }
+   
+  th {
+    background-color: #c3ebea;
+    font-weight: bold;
+  }
+   
+
+  #myForm {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    margin-left: -200px;
+    top: 50%;
+    margin-top: -100px;
+    width: 400px;
+    padding: 20px;
+    background: #f1f1f1;
+    border: 1px solid #888;
+  }
+   
+  /* 关闭按钮的样式 */
+  .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 30px;
+    cursor: pointer;
+  }
+  
+  
+  

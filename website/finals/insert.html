@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+    
+<html>
+    <style>
+    body {
+        background-color:#d2a9ce;
+        text-align:center;
+        font:100 22px/1.2 "楷体", Helvetica, Arial, sans-serif;
+    }
+    h1 {
+        color:rgb(105, 147, 177);
+        text-align:center;
+        font:800 36px/1.2 "楷体", Helvetica, Arial, sans-serif;
+    }
+    p {
+        color:#683737c4;
+        text-align:center;
+        font:500 22px/1.2 "楷体", Helvetica, Arial, sans-serif;
+    }
+    </style>
+    <script>
+        
+    </script>
+    <head>
+        <meta charset="utf-8">
+        <title>Library Management System</title>
+        <script type="text/javascript" src="./jquery-3.7.1.min.js"></script>
+        <script type="text/javascript" src="./book_query.js"></script>
+        <link rel="stylesheet" type="text/css" href="./style.css"/>
+    </head>
+
+    <body>
+        <h1>图书管理录入</h1>
+        
+        
+
+        <form name="sql action="C:\ProgramData\MySQL\MySQL Server 5.7\Data\"  method="post">
+            <label for="title">书名:</label>
+            <input type="text" id="title" name="title" required><br><br>
+            <label for="author">作者:</label>
+            <input type="text" id="author" name="author" required><br><br>
+            <label for="time">出版时间:</label>
+            <input type="datetime-local" id="time" name="time" required><br><br>
+            <label for="creator">创建者:</label>
+            <input type="text" id="creator" name="creator" required><br><br>
+            <input type="button" id="book_submit" value="提交">
+        </form>
+        本次录入列表：
+        <table border="1" align="center" id="book_table">
+            <tr>
+                <th>id</th>
+                <th>title</th>
+                <th>author</th> 
+                <th>time</th>
+                <th>create_time</th>
+                <th>creator</th>
+                <th>status</th>
+            </tr>
+        </table>
+
+
+            
+        <p id="demo">我的第一个段落。</p>
+        <script>
+            document.getElementById("demo").innerHTML = "你好";
+        </script>
+        
+        <p>
+            <button type="button" onclick="myFunction()">点击这里</button>
+        </p>
+
+        <script>
+            function myFunction(){
+            document.getElementById("demo").innerHTML="你好\t你最近怎么样?";
+        }
+        </script>
+
+        <script>
+            document.write(Date());
+        </script>
+
+        
+    </body>
+</html>
