@@ -1,2 +1,0 @@
-lst: list[(int, int, int)] = [tuple([int(j) for j in input().split()]) for k in range(int(input()))]
-res = [(s := range((n := [int(p) for p in input().split()])[0], n[1]), print(f'{(sum([(float((lst[t + 1][0] - lst[t][0]) ** 2 + (lst[t + 1][1] - lst[t][1]) ** 2) ** 0.5) for t in range(len(lst) - 1)]) / (lst[len(lst) - 1][2] - lst[0][2])):.3f}') if q == 0 else None, print(f'{sum([(float((lst[m + 1][0] - lst[m][0]) ** 2 + (lst[m + 1][1] - lst[m][1]) ** 2) ** 0.5) for m in s]) / (lst[n[1]][2] - lst[n[0]][2]):.3f}')) for q in range(int(input()))]
