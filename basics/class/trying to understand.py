@@ -8,7 +8,7 @@ class po:
         print(self.pr)
     def f2(self):
         self.cmd=int(self.cmd)
-        print(self.cmd+114514,self.para)
+        print(self.cmd+114514,self.para,self.cmd,self.pr)
         
 
 mabey=po('83274782346','0')

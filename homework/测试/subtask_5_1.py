@@ -1,9 +1,10 @@
 def check(piz):
-    sq1 = 0
+    sq1 = 'grvytv'
     sq2 = 0
 
     try:
         res = piz(sequence_1=sq1, sequence_2=sq2)
+        print(res)
     except TypeError as e:
         if e.args[0] == "Find a non-iterable object <class 'int'>. Bad ++C Committee!":
             print("Accepted.")
