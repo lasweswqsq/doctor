@@ -3,7 +3,7 @@ class po:
         self.pr=y
         self.cmd=z
         self.para=0
-    def f1(self):
+    def f1(self,t:str):
         self.pr += 'whioehfowifh'
         print(self.pr)
     def f2(self):
@@ -13,6 +13,7 @@ class po:
 
 mabey=po('83274782346','0')
 #mabey.para=38289742378
+po.f1(mabey,'hello')
 po.f2(mabey)
 #that is allright
 
