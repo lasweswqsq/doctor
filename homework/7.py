@@ -2,6 +2,8 @@ times= int(input())
 distance = [[0,0,0]]
 for i in range(times):
     x,y,time = map(int,input().split())
+    se = input().split()
+    print(se)
     distance.append([x,y,time])
 #print(distance)
 
