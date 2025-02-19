@@ -1,0 +1,6 @@
+{
+    "code-runner.executorMap": {
+        "c": "cd $dir && gcc '$fileName' -o '$fileNameWithoutExt.exe' -std=c17 -Wall -Wpedantic -Wextra && echo 'compilation ends.' && .\\'$fileNameWithoutExt.exe'",
+        "cpp": "cd $dir && g++ '$fileName' -o '$fileNameWithoutExt.exe' -std=c++20 -Wall -Wpedantic -Wextra && echo 'compilation ends.' && .\\'$fileNameWithoutExt.exe'",
+    }
+}

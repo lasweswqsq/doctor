@@ -6,7 +6,7 @@ print(greetings)
 print(name)
 print(name.upper())
 print(name.lower())
-
+print()
 grief='Yogo once said"Ugly is next to beauty, deformity is close to beauty, ugliness hides behind sublime, beauty and ugliness coexist, light and darkness coexist."'
 print(grief)
 
