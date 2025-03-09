@@ -5,7 +5,7 @@ int fur(int a){
     for (int i=1;i<=a;i++){
         list[i-1]=i;
     }
-    return list[a-1];
+    return list;
 }
 
 int main()
