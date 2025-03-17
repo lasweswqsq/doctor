@@ -20,6 +20,7 @@ int main() {
         ry = (op >> 7) & 7;
         im = op & 0x7f;
         op = (op >> 13) & 7;
+        printf("x = %d, y = %d, imm = %d, op = %d\n", rx, ry, im, op);
         switch (op) {
             case add:
                 if (rx) registers[rx] += registers[ry];
