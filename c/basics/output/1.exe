@@ -1,0 +1,1 @@
+.\1.c -std=c++20 -Wall -Wpedantic -Wextra a.c b.hxx c.cpp -Werror -o output_file -I /usr/local/boost_1_80_0/

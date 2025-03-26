@@ -6,12 +6,12 @@ int main(){
     int num;
     scanf("%d",&num);
     for (int i=0;i<num;i++){
-        int len;
-        scanf("%d",&len);
-        char *str = (char*)malloc(len*sizeof(char));
+        unsigned int len;
+        scanf("%u",&len);
+        char *str = (char*)malloc((len+1)*sizeof(char));
         scanf("%s",str);
         int flag=1;
-        for (int j=0;j<len;j++){
+        for (unsigned int j=0;j<len;j++){
             if (str[j]!=str[len-j-1]){
                 flag=0;
                 break;
