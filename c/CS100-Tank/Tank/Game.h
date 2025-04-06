@@ -67,13 +67,15 @@ void GameInit(void) {
       map.flags[Idx(pos)] = flag;
     }
 
-  //在地图内构建不可摧毁墙壁
+  /// \brief Build indestructible walls within the map.
+  /// Take a random number between 2 and maxSize-2.
+  /// If there are already occupied squares when constructing obstacles, select a new area to construct.
+  /// Build destructible walls within the map.
+  /// If there are already occupied squares when constructing obstacles, select a new area to construct.
   for (int i = 0; i<nSolids; ++i) {
-    //取2到maxSize-2之间的随机数
     int ranX = 2 + rand() % (map.size.x -2 -2 + 1 );
     int ranY = 2 + rand() % (map.size.y -2 -2 + 1);
     int temp = 0;
-    // 构建障碍时如果已经有占了格子了，就重新选择区域构建
     for (int y = -1; y <= 1; ++y) {
       for (int x = -1; x <= 1; ++x) {
         Vec pos = {ranX+x,ranY+y};
@@ -95,12 +97,9 @@ void GameInit(void) {
       }
 
   }
-  //在地图内构建可摧毁墙壁
   for (int i = 0; i<nWalls; ++i) {
     int ranX = 2 + rand() % (map.size.x -2 -2 + 1);
     int ranY = 2 + rand() % (map.size.y -2 -2 + 1);
-    int temp = 0;
-    // 构建障碍时如果已经有占了格子了，就重新选择区域构建
     for (int y = -1; y <= 1; ++y) {
       for (int x = -1; x <= 1; ++x) {
         Vec pos = {ranX+x,ranY+y};
@@ -123,13 +122,16 @@ void GameInit(void) {
 
   }
   
-  //构建自己的坦克
+  /// \brief Build your own tank.
+  /// If there are already occupied squares when building a tank, select a new area to construct.
+  /// Build enemy tanks.
+  /// If there are already occupied squares when building a tank, select a new area to construct.
+  /// Set the tank area as occupied.
   {
     while(true) {
       int ranX = 2 + rand() % (map.size.x -2 -2 + 1);
       int ranY = 2 + rand() % (map.size.y -2 -2 + 1);
       int temp = 0;
-    // 构建坦克时如果已经有占了格子了，就重新选择区域构建
       for (int y = -1; y <= 1; ++y) {
         for (int x = -1; x <= 1; ++x) {
           Vec pos = {ranX+x,ranY+y};
@@ -160,13 +162,11 @@ void GameInit(void) {
       break;
     }
   }
-  //构建敌人的坦克
   for (int i = 0; i < nEnemies; ++i) {
     while(true) {
       int ranX = 2 + rand() % (map.size.x -2 -2 + 1);
       int ranY = 2 + rand() % (map.size.y -2 -2 + 1);
       int temp = 0;
-    // 构建坦克时如果已经有占了格子了，就重新选择区域构建
       for (int y = -1; y <= 1; ++y) {
         for (int x = -1; x <= 1; ++x) {
           Vec pos = {ranX+x,ranY+y};
@@ -186,7 +186,6 @@ void GameInit(void) {
       tank->color = TK_RED;
       tank->isPlayer = false;
       tank->health = 100;
-      //把坦克区域置为占用
       for (int y = -1; y <= 1; ++y) 
         for (int x = -1; x <= 1; ++x) {
           Vec pos = {ranX+x,ranY+y};
@@ -240,6 +239,11 @@ void GameUpdate(void) {
   RdrClear();
 
   //TODO: You may need to delete or add codes here.
+  /// \brief If awsd is pressed, the tank will move.
+  /// If k is pressed, the tank will shoot.
+  /// If the bullet hits the tank or wall, the bullet will be removed.
+  /// If the bullet hits the destructible wall, the bullet will be removed.
+  /// If the tank is hit by the bullet and the health is less than 0, the tank will be removed.
   for (RegIterator it = RegBegin(regTank); it != RegEnd(regTank); it = RegNext(it)) {
     Tank *tank = RegEntry(regTank, it);
     //if (tank->pos.y < map.size.y - 3)
@@ -352,12 +356,10 @@ void GameUpdate(void) {
           
       }
       Vec pos = {bullet->pos.x,bullet->pos.y};
-      //导弹撞墙了给移除掉
       if(map.flags[Idx(pos)] == eFlagSolid) {
         RegRemove(bullet);
         continue;
       }
-      //导弹撞可击倒的墙了，把墙移除掉
       if(map.flags[Idx(pos)] == eFlagWall) {
         RegRemove(bullet);
         map.flags[Idx(pos)] = eFlagNone;
@@ -365,7 +367,6 @@ void GameUpdate(void) {
         continue;
       }
       
-      //导弹撞坦克坦克受伤，受伤到一定程度移除坦克
       if(map.flags[Idx(pos)] == eFlagTank) {
         RegRemove(bullet);
         for (RegIterator it = RegBegin(regTank); it != RegEnd(regTank); it = RegNext(it)){
@@ -374,7 +375,6 @@ void GameUpdate(void) {
           for(int y = -1 ; y <= 1 ; y++) {
             for(int x = -1 ; x <= 1 ; x++) {
               if(bullet->pos.x + x == tank->pos.x && bullet->pos.y + y == tank->pos.y) {
-                //随机扣血
                 tank->health = tank->health - ((rand() % 100) + 1);
                 if (tank->health <= 0) {
                   Vec tempPos = {tank->pos.x,tank->pos.y};
@@ -408,7 +408,7 @@ void GameUpdate(void) {
   RdrFlush();
 }
 
-// 独立判断AI的操作
+//// \brief This function is used to update the AI of the tank in the game.
 void GameUpdateAI(void) {
 
     double frameTime = (double)1000 / (double)10;
@@ -497,9 +497,7 @@ void GameUpdateAI(void) {
         }
       
     }
-    while (((double)(clock() - frameBegin) / CLOCKS_PER_SEC) * 1000.0 < frameTime - 0.5)
-      Daze();
-    frameBegin = clock();
+    
     
 
       }
@@ -541,6 +539,8 @@ void GameTerminate(void) {
 /// `GameInit`, `GameInput`, `GameUpdate`, and `GameTerminate`.
 ///
 /// \note This function should be called by `main`.
+/// This function is the main loop of the game, and it will run until the user
+/// presses the escape key.
 void GameLifecycle(void) {
   GameInit();
 
