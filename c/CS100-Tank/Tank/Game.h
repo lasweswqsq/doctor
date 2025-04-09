@@ -16,7 +16,7 @@
 #include "Renderer.h"
 
 #include <time.h>
-#include <windows.h>
+
 
 typedef struct {
   char keyHit; // The keyboard key hit by the player at this frame.
@@ -98,6 +98,7 @@ void GameInit(void) {
 
   }
   for (int i = 0; i<nWalls; ++i) {
+    int temp = 0;
     int ranX = 2 + rand() % (map.size.x -2 -2 + 1);
     int ranY = 2 + rand() % (map.size.y -2 -2 + 1);
     for (int y = -1; y <= 1; ++y) {
@@ -408,11 +409,11 @@ void GameUpdate(void) {
   RdrFlush();
 }
 
-//// \brief This function is used to update the AI of the tank in the game.
+//// \brief This function is used to update the AI tank in the game.
 void GameUpdateAI(void) {
 
-    double frameTime = (double)1000 / (double)10;
-    clock_t frameBegin = clock();
+    //double frameTime = (double)1000 / (double)10;
+    //clock_t frameBegin = clock();
     for (RegIterator it = RegBegin(regTank); it != RegEnd(regTank); it = RegNext(it)) {
       Tank *tank = RegEntry(regTank, it);
       if (tank-> isPlayer == false) {
@@ -555,7 +556,7 @@ void GameLifecycle(void) {
     GameUpdate();
     GameUpdateAI();
 
-    while (((double)(clock() - frameBegin) / CLOCKS_PER_SEC) * 1000.0 < frameTime - 0.5)
+    while (((double)(clock() - frameBegin) / CLOCKS_PER_SEC) * 200.0 < frameTime - 0.5)
       Daze();
     frameBegin = clock();
   }
