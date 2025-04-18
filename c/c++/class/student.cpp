@@ -6,7 +6,7 @@ class Student {
         string id;
         int entranceYear;
     public:
-        Student(const string &name, const string &id) :
+        Student(const string name, const string id) :
         name(name), id(id), entranceYear(stoi(id.substr(0,4))) {}
             
         void setName(const string &newName) {
