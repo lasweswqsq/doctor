@@ -75,33 +75,45 @@ class Dynarray{
         ~Dynarray() {
             delete[] m_storage;
         }
-    
 };
 
 
-// Basic information
-// Let a be an object of type const Dynarray. The following operations should be supported:
+// This problem is based on the Dynarray you wrote in Homework 4 Problem 3. Before adding anything new to it, your Dynarray should meet all the requirements in that problem first.
 
-// a.size()
-// Returns the length of the "array", that is, the number of elements in a. It should be of type std::size_t, which is defined in <cstddef>.
+// In this task, your Dynarray should support the following new things.
 
-// a.empty()
-// Returns a bool value indicating whether the Dynarray is empty or not. A Dynarray is said to be empty if its length is zero.
+// Type alias members
+// The standard library containers have many type alias members for the purpose of supporting generic types. For example, std::vector<T>::value_type is T, std::vector<T>::size_type is std::size_t, std::vector<T>::pointer is T *.
 
-// Element access
-// Let a be an object of type Dynarray and ca be an object of type const Dynarray. Let n be a non-negative integer. The following operations should be supported:
+// As an exercise, do the same thing in your Dynarray. You need to define the following type alias members, all of which should be public:
 
-// a.at(n)
-// Returns a reference to the element indexed n in a. It is both readable and modifiable since a is not const. For example:
+// type alias member	definition
+// Dynarray::size_type	std::size_t
+// Dynarray::value_type	int
+// Dynarray::pointer	int *
+// Dynarray::reference	int &
+// Dynarray::const_pointer	const int *
+// Dynarray::const_reference	const int &
+// Moreover, we will eventually make this Dynarray a class template Dynarray<T> that can store any types of data, not only ints. This will be in Homework 7 or 8, depending on the lecture schedule. To make your work easier by then, you'd better make full use of the type alias members you have defined. For example, change new int[n] to new value_type[n], change int & to reference, and change (const int *begin, const int *end) to (const_pointer begin, const_pointer end), etc. By the time we make this a class template, you will just have to modify very few things.
 
-// a.at(n) = 42;
-// std::cout << a.at(n) << std::endl;
-// ca.at(n)
-// Returns a reference-to-const to the element indexed n in ca. It should be read-only, since ca is const. For example:
+// Subscript operator
+// The Dynarray should support the subscript operator, so that we can use a[i] instead of a.at(i) to access the i-th element.
 
-// std::cout << ca.at(n) << std::endl; // OK
-// ca.at(n) = 42; // This should lead to a compile-error.
-// Moreover, to keep in consistent with the behaviors of the standard library containers, Dynarray::at should do bounds-checking. If n is not in the range [0, a.size()), you need to throw an exception std::out_of_range. To throw this exception, write
+// Let a be an object of type Dynarray or const Dynarray. The behavior of a[i] should be exactly the same as a.at(i), except that the subscript operator does not perform bounds checking. That is, no exception should be thrown if i >= a.size().
 
-// throw std::out_of_range{"Dynarray index out of range!"};
-// The exception class std::out_of_range is defined in the standard library file <stdexcept>.
+// Relational operators
+// The Dynarray should support the six relational operators: <, <=, >, >=, == and !=. These operators perform lexicographical comparison of two Dynarrays.
+
+// Lexicographical comparison is an operation with the following properties:
+
+// Two ranges are compared element by element.
+// The first mismatching element defines which range is lexicographically less or greater than the other.
+// If one range is a prefix of another, the shorter range is lexicographically less than the other.
+// If two ranges have equivalent elements and are of the same length, then the ranges are lexicographically equal.
+// An empty range is lexicographically less than any non-empty range.
+// Two empty ranges are lexicographically equal.
+// Since we use C++17, you still have to define all six of them. It is often good practice to implement operator< and operator== first, and define the rest in terms of them. Moreover, you are not allowed to write loops or recursions in these six functions. Go through this page and find the appropriate standard library algorithms.
+
+// Note that in homework 7 or 8, we will make this Dynarray a class template Dynarray<T>, and we should always minimize the requirements on unknown types when we do generic programming. Since C++17 does not have compiler-generated comparison operators, we suggest you making your implementation depend only upon the operator< and operator== of the element type.
+
+// You are free to choose to define them as either members or non-members. If you choose to define them as non-members, you should make them static functions. If you choose to define them as members, you should make them private and provide public non-member functions that call them.
