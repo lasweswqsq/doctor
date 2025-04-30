@@ -88,8 +88,8 @@ void GameInit(void) {
       if (temp == 1)
         break;
     }  
-    if (temp == 1)
-      continue;
+    // if (temp == 1)
+    //   continue;
     for (int y = -1; y <= 1; ++y)
       for (int x = -1; x <= 1; ++x) {
         Vec pos = {ranX+x,ranY+y};
